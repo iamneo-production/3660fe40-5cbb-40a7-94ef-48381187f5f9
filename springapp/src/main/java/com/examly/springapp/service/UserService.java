@@ -9,13 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+
 @Service
 public class UserService {
     private final UserModelRepo userModelRepo;
+    
 
     @Autowired
     public UserService(UserModelRepo userModelRepo){
         this.userModelRepo = userModelRepo;
+        
     }
 
     public List<UserModel> findAllUsers(){
@@ -43,6 +47,4 @@ public class UserService {
     public void deleteUser(String email){
         userModelRepo.deleteUserModelByEmail(email);
     }
-
-
 }

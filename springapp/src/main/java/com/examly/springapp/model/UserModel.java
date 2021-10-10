@@ -1,13 +1,11 @@
 package com.examly.springapp.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Column;
 
 @Entity
-public class UserModel implements Serializable{
+public class UserModel{
     @Id
     @Column(nullable = false)
     private String email;

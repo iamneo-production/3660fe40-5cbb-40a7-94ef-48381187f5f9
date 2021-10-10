@@ -20,13 +20,9 @@ public class LoginController {
 
     @PostMapping("/login")
     public Boolean checkUser(@RequestBody LoginModel loginModel){
-        UserModel user = loginService.loginUser(loginModel);
 
-        Boolean status =  user != null && user.getPassword().equals(loginModel.getPassword());
-        if(status){
-            user.setActive(true);
-            userService.saveEditedUser(user);
-        }
+        Boolean status =  loginService.loginUser(loginModel);
+
         return status;
     }
 }
