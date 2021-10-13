@@ -3,14 +3,15 @@
   margin:auto;
   margin-top:40px;
   border:0;
-  width:100%;
 }
-.App {
+.Login
+{
+  margin-top: 50px;
   text-align: center;
   justify-content: center;
   box-sizing: content-box;
 }
-/*div .heading
+div .heading
 {
   background-color: crimson;
   color: white;
@@ -56,6 +57,7 @@ input
   display: block;
   padding:10p 15px;
   height:40px;
+  justify-content: center;
 }
 div
 {
@@ -70,7 +72,7 @@ div .form-outer
   border:1px solid crimson;
   border-width: 2px;
   margin:auto;
-}*/
+}
 /*div .form-input
 {
   background-color: white;
@@ -84,7 +86,7 @@ div .form-outer
   height:40px;
 }*/
 
-/*button.btnlgn
+button.btnlgn
 {
   color: white;
   background-color: lightskyblue;
@@ -106,4 +108,36 @@ button.signup
   text-align: right;
   display:inline;
   padding:0 0 0 0;
-}*/
+}
+
+@media (max-width:768px)
+{
+	div.heading
+	{
+		color:blue;
+    text-transform: lowercase;
+	}
+}
+@media (min-width:769px) and (max-width:1023px)
+{
+	div.heading
+	{
+		color:yellow;
+    text-transform: uppercase;
+    font-size:larger;
+    height:1000px;
+	}
+}
+@media (min-width:1024px)
+{
+	div.heading
+	{
+		color:black;
+    text-transform: capitalize;
+	}
+  h2
+  {
+    color:black;
+  }
+}
+

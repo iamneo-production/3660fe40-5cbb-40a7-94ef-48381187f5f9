@@ -3,14 +3,13 @@
   margin:auto;
   margin-top:40px;
   border:0;
-  width:100%;
 }
-.App {
+.signUp {
   text-align: center;
   justify-content: center;
   box-sizing: content-box;
 }
-/*div .heading
+div .heading
 {
   background-color: crimson;
   color: white;
@@ -70,7 +69,7 @@ div .form-outer
   border:1px solid crimson;
   border-width: 2px;
   margin:auto;
-}*/
+}
 /*div .form-input
 {
   background-color: white;
@@ -84,7 +83,7 @@ div .form-outer
   height:40px;
 }*/
 
-/*button.btnlgn
+button.btnsub
 {
   color: white;
   background-color: lightskyblue;
@@ -93,11 +92,11 @@ div .form-outer
   display:block;
 }
 
-button.btnlgn:hover
+button.btnsub::hover
 {
   background-color:blue;
 }
-button.signup
+button.login
 {
   
   text-decoration: underline;
@@ -106,4 +105,4 @@ button.signup
   text-align: right;
   display:inline;
   padding:0 0 0 0;
-}*/
+}
