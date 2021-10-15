@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
-import Login from './Login';
-import SignUp from './SignUp';
-import AdminMovie from './AdminMovie';
+import Login from './components/Login/Login';
+import SignUp from './components/SignUp/SignUp';
+import AdminMovie from './components/AdminMovie/AdminMovie';
 import {Route,Switch} from 'react-router-dom';
+
 
 function App()
 {

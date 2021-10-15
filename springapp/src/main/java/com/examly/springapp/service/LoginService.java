@@ -27,8 +27,10 @@ public class LoginService {
         if(user.isPresent()){
                 UserModel currUser = userModelRepo.findUserModelByEmail(loginModel.getEmail())
                                             .orElseThrow(() -> new UserNotFoundException("User Not Found"));
-                                                
+                // String encodedPassword = this.passwordEncoder.encode(loginModel.getPassword(), currUser.getPassword());
                 status = this.passwordEncoder.matches(loginModel.getPassword(), currUser.getPassword());
+                // status = encodedPassword.equals(currUser.getPassword());
+                System.out.println(status);
                 if(status){
                     currUser.setActive(true);
                     userModelRepo.save(currUser);
