@@ -20,7 +20,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public Boolean checkUser(@RequestBody LoginModel loginModel){
-
+        System.out.println(loginModel.getEmail() +" "+ loginModel.getPassword());
         Boolean status =  loginService.loginUser(loginModel);
 
         return status;

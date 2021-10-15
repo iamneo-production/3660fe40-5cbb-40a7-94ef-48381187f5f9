@@ -1,9 +1,8 @@
 import React from 'react';
-import Card from "./Card";
-import Data from "./Data";
+import Card from "../Card/Card";
+import Data from "../../Data";
 import './AdminMovie.css'
-function ncards(val)
-{
+const ncards = (val) =>{
     return(
         <Card
             imgsrc={val.imgsrc}
@@ -16,8 +15,7 @@ function ncards(val)
     );
 }
 
-function AdminMovie()
-{
+const AdminMovie = () =>{
     return(
         <div className="">
             <div className="adminheading">
