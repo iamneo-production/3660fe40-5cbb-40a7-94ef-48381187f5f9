@@ -1,0 +1,143 @@
+*
+{
+  margin:0;
+  border:0;
+  box-sizing:border-box;
+  padding:0;
+  width:100%;
+}
+div
+{
+    width:100%;
+}
+div.mainitem
+{
+  width:100%;
+  box-sizing:border-box;
+ 
+  background-color: antiquewhite;
+}
+div .adminheading
+{
+    margin:auto;
+    background-color: crimson;
+    height:60px;
+    max-width:100%;
+    font-size:30px;
+    padding-left:10px;
+    display: flex;
+    justify-content:center;
+    position:relative;
+    vertical-align:middle;
+    padding-top:7px;
+    color:white;
+  }
+
+
+.btn
+{
+  margin:0;
+  color:white;
+  font-size:15px;
+  max-width:100%;
+  justify-content: right;
+  height:40px;
+  background-color: crimson;
+  padding-right:0;
+}
+
+div .search
+{
+  margin:auto;
+  background-color: white;
+  display: flex;
+  height:60px;
+  
+}
+
+.typing
+{
+    padding:5px 5px 5px 10px;
+    margin-left:10px;
+    border-radius:10px;
+}
+
+.searchbtn
+{
+    background-color: pink;
+    border-radius: 25px;
+    text-align:center;
+    height:40px;
+    width:90px;
+    background-size: auto;
+    margin-left:40px;
+    margin-top:10px;
+    font-size:20px;
+    
+}
+
+.ncards
+{
+    width:70%;
+    float:left;
+  
+}
+
+.sideform
+{
+  margin-top:30px;
+  padding:5px 5px 5px 5px;
+  width:25%;
+  float:left;
+  background-color:lightgrey;
+  border-radius: 5px;
+}
+
+p.updating
+{
+  margin-top: 20px;
+  margin-bottom:20px;
+  padding:5px 5px 5px 100px;
+  font-weight: bold;
+  justify-content: center;
+}
+
+input.forming
+{
+  float:left;
+  margin:10px 10px 10px 10px;
+  padding:5px 5px 5px 5px;
+  width:40%;
+  border-radius:5px;
+}
+
+input.formingtime
+{
+  width:50px;
+  justify-content: center;
+  float:left;
+  border-radius:5px;
+  margin:10px 10px 10px 10px;
+}
+
+textarea.cast
+{
+  border-radius: 5px;
+  margin:10px 10px 10px 10px;
+  width:90%;
+  border:1px solid black;
+}
+
+.formsubmit
+{
+  background-color:skyblue;
+  color:black;
+  width:25%;
+  justify-content:center;
+  height:50px;
+  margin-left:110px;
+  font-weight: bold;
+  padding:20px 5px 20px 5px;
+  vertical-align:middle;
+  border-radius:5px;
+}
