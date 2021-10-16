@@ -3,16 +3,18 @@
   margin:auto;
   margin-top:40px;
   border:0;
-  width:100%;
 }
-.App {
+.signUp {
+  margin-top:20px;
   text-align: center;
   justify-content: center;
   box-sizing: content-box;
+  width:60%;
 }
-/*div .heading
+div .signupheading
 {
   background-color: crimson;
+  width:100%;
   color: white;
   text-align: left;
   font-weight: 20;
@@ -21,10 +23,12 @@
   height:50px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin:auto;
-  margin-bottom: 10px;
-  vertical-align: middle;
-  display: table-cell;
+  display: block;
   padding-left: 5px;
+  margin-top:40px;
+  padding-left:20px;
+  padding-top:10px;
+  
 }
 h2
 {
@@ -36,7 +40,7 @@ h2
   margin-left:auto;
   margin-right:auto;
   margin-bottom: 20px;
-  
+  margin-top:20px;
 }
 p
 {
@@ -49,7 +53,7 @@ input
 {
   background-color: white;
   border:1px solid black;
-  width:50%;
+  width:60%;
   margin-top: 10px;
   margin-bottom:20px;
   text-align: left;
@@ -70,7 +74,7 @@ div .form-outer
   border:1px solid crimson;
   border-width: 2px;
   margin:auto;
-}*/
+}
 /*div .form-input
 {
   background-color: white;
@@ -84,20 +88,24 @@ div .form-outer
   height:40px;
 }*/
 
-/*button.btnlgn
+button.btnsub
 {
   color: white;
   background-color: lightskyblue;
   padding: 10px 50px 10px 50px;
   margin-bottom: 60px;
   display:block;
+  margin-top:40px;
+  margin-left:auto;
+  margin-right:auto;
+  width:25%;
 }
 
-button.btnlgn:hover
+button.btnsub:hover
 {
   background-color:blue;
 }
-button.signup
+button.login
 {
   
   text-decoration: underline;
@@ -106,4 +114,10 @@ button.signup
   text-align: right;
   display:inline;
   padding:0 0 0 0;
-}*/
+}
+
+.error
+{
+  color:red;
+  font-size:12px;
+}

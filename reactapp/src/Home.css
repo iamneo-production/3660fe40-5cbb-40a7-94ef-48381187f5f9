@@ -1,0 +1,27 @@
+*
+{
+    margin:auto;
+    border:0;
+    box-sizing:border-box;
+}
+div .heading
+{
+  background-color: crimson;
+  color: white;
+  text-align: left;
+  font-weight: 20;
+  font-size: 20px;
+  font-style:normal;
+  height:50px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin:auto;
+  margin-bottom: 10px;
+  vertical-align: middle;
+  display: table-cell;
+  padding-left: 5px;
+}
+.logout
+{
+    text-align:right;
+}
+
