@@ -7,20 +7,19 @@ import axios from 'axios';
 var signInEmail = '';
 var signInPassword = '';
 
-const onEmailChange = (event) =>{
-    signInEmail = event.target.value
-}
+// const onEmailChange = (event) =>{
+//     signInEmail = event.target.value
+// }
 
-const onPasswordChange = (event) =>{
-    signInPassword = event.target.value;
-}
+// const onPasswordChange = (event) =>{
+//     signInPassword = event.target.value;
+// }
 
 const onSubmitSignIn = (event) => {
   event.preventDefault(); //to avoid page refresh
   const json = JSON.stringify({ email: signInEmail, password : signInPassword });
   axios.post('https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/login', json, {
     headers: {
-      // Overwrite Axios's automatically set Content-Type
       'Content-Type': 'application/json'
     }
   })
