@@ -10,8 +10,10 @@
   text-align: center;
   justify-content: center;
   box-sizing: content-box;
+  width:60%;
+  height:90%;
 }
-div .heading
+div.loginheading
 {
   background-color: crimson;
   color: white;
@@ -21,19 +23,21 @@ div .heading
   font-style:normal;
   height:50px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin:auto;
   margin-bottom: 10px;
-  vertical-align: middle;
-  display: table-cell;
-  padding-left: 5px;
+  display:block;
+  justify-content:center;
+  margin:auto;
+  padding-top:11px;
+  padding-left:15px;
 }
-h2
+h2.logintext
 {
   color: blue;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
   font-weight: 500;
   font-style: normal;
+  margin-top:50px;
   margin-left:auto;
   margin-right:auto;
   margin-bottom: 20px;
@@ -42,35 +46,37 @@ h2
 p
 {
   text-align:right;
-  width:50%;
   display: inline;
-  margin:auto;
 }
+
 input
 {
   background-color: white;
   border:1px solid black;
-  width:50%;
+  width:100%;
   margin-top: 10px;
   margin-bottom:20px;
+  margin-left: auto;
+  margin-right:auto;
   text-align: left;
   display: block;
   padding:10p 15px;
   height:40px;
   justify-content: center;
+  
 }
-div
+/*div
 {
   width:700px;
   margin:auto;
   justify-content: center;
   position: relative;
-}
+}*/
 div .form-outer
 {
   background-color: lightgray;
   border:1px solid crimson;
-  border-width: 2px;
+
   margin:auto;
 }
 /*div .form-input
@@ -86,13 +92,20 @@ div .form-outer
   height:40px;
 }*/
 
+
+
 button.btnlgn
 {
   color: white;
   background-color: lightskyblue;
   padding: 10px 50px 10px 50px;
+  padding-right: 50px;
   margin-bottom: 60px;
   display:block;
+  width:25%;
+  margin-top:30px ;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button.btnlgn:hover
