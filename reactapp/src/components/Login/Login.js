@@ -37,23 +37,23 @@ const onSubmitSignIn = (event) => {
   
 }
 
-const Login = () => {
-    
+function Login()
+{
     return(
         <div className="Login">
-        <div className="heading">
+        <div className="loginheading">
           Mr.Viewer
         </div>
-          <form className="form-outer" onSubmit={onSubmitSignIn} method="post" >
-            <h2>Login</h2>
+          <form className="form-outer" onSubmit={onSubmitSignIn} method="post">
+            <h2 className="logintext" id="logintext">Login</h2>
             <div className="form-input">
-              <input type="email" name="email" id="email" placeholder="Enter email" onChange = { onEmailChange }/>
+              <input type="text" name="email" id="email" placeholder="Enter email"/>
             </div>
             <div className="form-input">
-              <input type="password" name="password" id="password" placeholder="Enter password" onChange = {onPasswordChange}/>
+              <input type="password" name="password" id="password" placeholder="Enter password"/>
             </div>
             <p>New User?</p><NavLink className="signup" to="/SignUp">Sign Up</NavLink>
-            <button type="submit" className="btnlgn">Login</button>
+            <button className="btnlgn">Login</button>
           </form>
       </div>
 
