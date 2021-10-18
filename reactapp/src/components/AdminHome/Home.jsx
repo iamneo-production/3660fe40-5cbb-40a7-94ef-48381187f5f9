@@ -40,7 +40,7 @@ const AdminHome = () => {
 		const [shallDelete, setShallDelete] = useState(false);
 		return (
 			<>
-				<tr key={index}>
+				<tr id = {`grid${index+1}`} key={index}>
 					<td>
 						<center>{user.id}</center>
 					</td>
@@ -59,6 +59,7 @@ const AdminHome = () => {
 								type="submit"
 								onClick={() => setShallEdit(true)}
 								className="btn btn-outline-secondary"
+								id="editButton"
 							>
 								<span className="fa fa-edit fa-lg"></span>
 							</button>
@@ -67,6 +68,7 @@ const AdminHome = () => {
 								type="submit"
 								onClick={() => setShallDelete(true)}
 								className="btn btn-outline-danger"
+								id="deleteButton"
 							>
 								<span className="fa fa-trash fa-lg"></span>
 							</button>
@@ -97,30 +99,32 @@ const AdminHome = () => {
 	return (
 		<>
 			<AdminNavigation />
-			<SearchComponent />
-			<div className="container table-container">
-				<table className="table table-hover">
-					<thead>
-						<tr>
-							<th scope="col">
-								<center>S.No</center>
-							</th>
-							<th scope="col">
-								<center>Name</center>
-							</th>
-							<th scope="col">
-								<center>Email</center>
-							</th>
-							<th scope="col">
-								<center>Mobile</center>
-							</th>
-							<th scope="col">
-								<center>Options</center>
-							</th>
-						</tr>
-					</thead>
-					<tbody>{userList.map(RenderUser)}</tbody>
-				</table>
+			<div id="adminHome">
+				<SearchComponent />
+				<div className="container table-container">
+					<table className="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">
+									<center>S.No</center>
+								</th>
+								<th scope="col">
+									<center>Name</center>
+								</th>
+								<th scope="col">
+									<center>Email</center>
+								</th>
+								<th scope="col">
+									<center>Mobile</center>
+								</th>
+								<th scope="col">
+									<center>Options</center>
+								</th>
+							</tr>
+						</thead>
+						<tbody>{userList.map(RenderUser)}</tbody>
+					</table>
+				</div>
 			</div>
 		</>
 	);

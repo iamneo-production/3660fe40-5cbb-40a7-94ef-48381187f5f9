@@ -139,7 +139,7 @@ const SignUp = () => {
 						<input
 							type="password"
 							className="form-control signup-input"
-							id="password"
+							id="confirmPassword"
 							placeholder="Password"
 							onChange={handleChange}
 						/>

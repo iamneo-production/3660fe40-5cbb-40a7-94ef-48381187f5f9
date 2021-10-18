@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Card from "../Card/Card";
 import Data from "../../Data.js";
 
-const MovieCard = (movie, index) => {
+const MovieCard = (movie) => {
 	return (
 		<>
-			<div className="col-md-2 card">
+			<div id={`grid${movie.index+1}`} className="col-md-2 card">
 				<img src={movie.imgsrc} alt="mypic" className="cardimg" />
 				<div className="cardinfo">
 					<h3 className="card_title">{movie.title}</h3>
@@ -19,9 +18,11 @@ const MovieCard = (movie, index) => {
 		</>
 	);
 };
-const ncards = (val) => {
+const ncards = (val, index) => {
 	return (
 		<MovieCard
+			key={index}
+			index={index}
 			imgsrc={val.imgsrc}
 			title={val.title}
 			year={val.year}

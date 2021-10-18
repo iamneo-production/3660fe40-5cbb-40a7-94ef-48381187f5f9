@@ -45,7 +45,7 @@ const handleLogin = (event) => {
 
 const Login = () => {
 	return (
-		<div>
+		<>
 			<AuthNavigation />
 			<div id="loginBox" className="container login-container">
 				<center>
@@ -93,7 +93,7 @@ const Login = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 export default Login;

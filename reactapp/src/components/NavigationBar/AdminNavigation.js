@@ -3,9 +3,9 @@ const AdminNavigation = () => {
 		<div className="navbar">
 			<h1>Mr.Viewer</h1>
 			<div className="nav-right">
-				<button className="btn nav-btn">Home</button>
-				<button className="btn nav-btn">Movie</button>
-				<button className="btn nav-btn">Logout</button>
+				<button id="homeButton" className="btn nav-btn">Home</button>
+				<button id="movieButton" className="btn nav-btn">Movie</button>
+				<button id="logoutButton" className="btn nav-btn">Logout</button>
 			</div>
 		</div>
 	);

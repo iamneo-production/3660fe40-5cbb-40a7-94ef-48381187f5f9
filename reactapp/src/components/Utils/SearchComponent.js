@@ -5,8 +5,9 @@ const SearchComponent = () => {
 				className="typing"
 				type="text"
 				placeholder="Type here to search"
+				id="searchBox"
 			/>
-			<button className="searchbtn">search</button>
+			<button id="searchButton" className="searchbtn">search</button>
 		</div>
 	);
 };

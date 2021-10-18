@@ -96,39 +96,43 @@ function Movie() {
 	return (
 		<>
 			<UserNavigation />
-			<div className="search">
-				<input
-					className="typing"
-					type="text"
-					placeholder="Type here to search"
-					value={searchQuery}
-					onChange={onTextChange}
-				/>
-				<button className="searchbtn">search</button>
-			</div>
-			<div>
-				{selectedMovie ? (
-					<MovieInfoComponent
-						selectedMovie={selectedMovie}
-						onMovieSelect={onMovieSelect}
+			<div id="userHomePage">
+				<div className="search">
+					<input
+						className="typing"
+						type="text"
+						id="searchBox"
+						placeholder="Type here to search"
+						value={searchQuery}
+						onChange={onTextChange}
 					/>
-				) : (
-					<MovieListContainer>
-						{movieList?.length ? (
-							movieList.map((movie, index) => (
-								<MovieComponent
-									key={index}
-									movie={movie}
-									onMovieSelect={onMovieSelect}
-								/>
-							))
-						) : (
-							<>
-								<MovieList />
-							</>
-						)}
-					</MovieListContainer>
-				)}
+					<button id="searchButton" className="searchbtn">search</button>
+				</div>
+				<div>
+					{selectedMovie ? (
+						<MovieInfoComponent
+							selectedMovie={selectedMovie}
+							onMovieSelect={onMovieSelect}
+						/>
+					) : (
+						<MovieListContainer>
+							{movieList?.length ? (
+								movieList.map((movie, index) => (
+									<MovieComponent
+										key={index}
+										movie={movie}
+										index={index}
+										onMovieSelect={onMovieSelect}
+									/>
+								))
+							) : (
+								<>
+									<MovieList />
+								</>
+							)}
+						</MovieListContainer>
+					)}
+				</div>
 			</div>
 		</>
 	);

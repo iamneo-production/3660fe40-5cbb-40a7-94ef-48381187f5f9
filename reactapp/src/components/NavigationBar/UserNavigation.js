@@ -3,7 +3,7 @@ const UserNavigation = () => {
 		<div className="navbar">
 			<h1>Mr.Viewer</h1>
 			<div className="nav-right">
-				<button className="btn nav-btn">Logout</button>
+				<button id = "logoutButton" className="btn nav-btn">Logout</button>
 			</div>
 		</div>
 	);

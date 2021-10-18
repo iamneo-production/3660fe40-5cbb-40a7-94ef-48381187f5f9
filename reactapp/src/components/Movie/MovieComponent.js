@@ -45,6 +45,7 @@ const MovieComponent = (props) => {
 	};
 	return (
 		<>
+		<div id={`grid${props.index+1}`}>
 			<MovieContainer
 				onClick={() => {
 					props.onMovieSelect(imdbID);
@@ -62,6 +63,8 @@ const MovieComponent = (props) => {
 					</center>
 				</div>
 			</MovieContainer>
+		</div>
+			
 		</>
 	);
 };

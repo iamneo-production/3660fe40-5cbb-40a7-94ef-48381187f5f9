@@ -20,7 +20,7 @@ import "./AdminMovie.css";
 
 const AdminMovie = () => {
 	return (
-		<div className="">
+		<div>
 			<AdminNavigation />
 			<SearchComponent />
 			<div className="ncards">{Data.map(Card)}</div>

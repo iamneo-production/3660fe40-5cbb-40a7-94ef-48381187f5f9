@@ -230,7 +230,7 @@ const Card = (movie, index) => {
 	const [shallDelete, setShallDelete] = useState(false);
 	return (
 		<>
-			<div className="card">
+			<div id={`grid${index+1}`} className="card">
 				<img src={movie.imgsrc} alt="mypic" className="cardimg" />
 				<div className="cardinfo">
 					<h3 className="card_title">{movie.title}</h3>
