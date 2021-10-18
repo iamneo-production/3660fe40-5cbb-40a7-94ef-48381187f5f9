@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import "./Movie.css";
 
 const MovieContainer = styled.div`
 	display: flex;
@@ -45,26 +44,25 @@ const MovieComponent = (props) => {
 		color: "white",
 	};
 	return (
-		<MovieContainer
-			onClick={() => {
-				props.onMovieSelect(imdbID);
-				window.scrollTo({ top: 0, behavior: "smooth" });
-			}}
-		>
-			<CoverImage src={Poster} alt={Title} />
+		<>
+			<MovieContainer
+				onClick={() => {
+					props.onMovieSelect(imdbID);
+					window.scrollTo({ top: 0, behavior: "smooth" });
+				}}
+			>
+				<CoverImage src={Poster} alt={Title} />
 
-			<ul>
-				<li>
-					<MovieInfo>{Title}</MovieInfo>
-				</li>
-				<li>
-					<MovieInfo>{Year}</MovieInfo>
-				</li>
-				<li>
-					<MovieInfo>{Type}</MovieInfo>
-				</li>
-			</ul>
-		</MovieContainer>
+				<div className="container">
+					<center>
+						<h3>{Title}</h3>
+						<br />
+						<h6>{Year}</h6>
+						<h6>{Type}</h6>
+					</center>
+				</div>
+			</MovieContainer>
+		</>
 	);
 };
 export default MovieComponent;

@@ -3,6 +3,7 @@ import Axios from "axios";
 import styled from "styled-components";
 import MovieComponent from "./MovieComponent";
 import MovieInfoComponent from "./MovieInfoComponent";
+import UserNavigation from "../NavigationBar/UserNavigation";
 import MovieList from "../MovieList/MovieList.js";
 
 export const API_KEY = "a9118a3a";
@@ -70,7 +71,7 @@ const Placeholder = styled.img`
 	opacity: 50%;
 `;
 
-function App() {
+function Movie() {
 	const [searchQuery, updateSearchQuery] = useState("");
 
 	const [movieList, updateMovieList] = useState([]);
@@ -80,7 +81,7 @@ function App() {
 
 	const fetchData = async (searchString) => {
 		const response = await Axios.get(
-			`https://www.omdbapi.com/?s=${searchString}&apikey=${API_KEY}`
+			`https://www.omdbapi.com/?s=${searchString.trim()}&apikey=${API_KEY}`
 		);
 		updateMovieList(response.data.Search);
 	};
@@ -93,47 +94,44 @@ function App() {
 		updateTimeoutId(timeout);
 	};
 	return (
-		<Container>
-			<Header>
-				<AppName>
-					<MovieImage src="/react-movie-app/movie-icon.svg" />
-					<h1>Mr.Viewer</h1>
-				</AppName>
-				<SearchBox>
-					<SearchIcon src="/react-movie-app/search-icon.svg" />
-					<SearchInput
-						placeholder="Search Movie"
-						value={searchQuery}
-						onChange={onTextChange}
-					/>
-				</SearchBox>
-				<button className="search-button">Search</button>
-			</Header>
-
-			{selectedMovie ? (
-				<MovieInfoComponent
-					selectedMovie={selectedMovie}
-					onMovieSelect={onMovieSelect}
+		<>
+			<UserNavigation />
+			<div className="search">
+				<input
+					className="typing"
+					type="text"
+					placeholder="Type here to search"
+					value={searchQuery}
+					onChange={onTextChange}
 				/>
-			) : (
-				<MovieListContainer>
-					{movieList?.length ? (
-						movieList.map((movie, index) => (
-							<MovieComponent
-								key={index}
-								movie={movie}
-								onMovieSelect={onMovieSelect}
-							/>
-						))
-					) : (
-						<>
-							<MovieList />
-						</>
-					)}
-				</MovieListContainer>
-			)}
-		</Container>
+				<button className="searchbtn">search</button>
+			</div>
+			<div>
+				{selectedMovie ? (
+					<MovieInfoComponent
+						selectedMovie={selectedMovie}
+						onMovieSelect={onMovieSelect}
+					/>
+				) : (
+					<MovieListContainer>
+						{movieList?.length ? (
+							movieList.map((movie, index) => (
+								<MovieComponent
+									key={index}
+									movie={movie}
+									onMovieSelect={onMovieSelect}
+								/>
+							))
+						) : (
+							<>
+								<MovieList />
+							</>
+						)}
+					</MovieListContainer>
+				)}
+			</div>
+		</>
 	);
 }
 
-export default App;
+export default Movie;

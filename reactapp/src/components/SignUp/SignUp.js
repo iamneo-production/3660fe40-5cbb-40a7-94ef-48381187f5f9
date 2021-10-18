@@ -1,7 +1,8 @@
-import React, {useState} from "react";
-import "./SignUp.css";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import AuthNavigation from "../NavigationBar/AuthNavigation";
+import "./SignUp.css";
 
 const SignUp = () => {
 	const [values, setValues] = useState({
@@ -12,7 +13,12 @@ const SignUp = () => {
 		confirmpassword: "",
 	});
 
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState({
+		email: "",
+		Username: "",
+		Mobilenumber: "",
+		password: "",
+	});
 
 	const handleChange = (event) => {
 		setValues({ ...values, [event.target.name]: event.target.value });
@@ -45,7 +51,6 @@ const SignUp = () => {
 	};
 
 	const validation = (values) => {
-		let errors = {};
 		const regex = "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$";
 		if (!values.email || !regex.test(values.email)) {
 			errors.email = "re-check email";
@@ -69,82 +74,100 @@ const SignUp = () => {
 		onSubmitRegister(event);
 	};
 	return (
-		<div className="signUp">
-			<div className="heading">Mr.Viewer</div>
-			<form
-				className="form-outer"
-				onSubmit={onSubmitRegister}
-				method="post"
-			>
-				<h2>Sign Up</h2>
-				<div className="form-input">
-					<input
-						type="text"
-						name="email"
-						id="email"
-						value={values.email}
-						onChange={handleChange}
-						placeholder="Enter email"
-					/>
-					{errors.email && <p className="error">{errors.email}</p>}
+		<div>
+			<AuthNavigation />
+
+			<div id="signupBox" className="container signup-container">
+				<form>
+					<div class="form-group">
+						<label for="email">Email address</label>
+						<input
+							type="email"
+							className="form-control signup-input"
+							id="email"
+							aria-describedby="emailHelp"
+							placeholder="Enter email"
+							onChange={handleChange}
+						/>
+						{errors.email && (
+							<p className="error">{errors.email}</p>
+						)}
+					</div>
+					<br />
+
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input
+							type="text"
+							className="form-control signup-input"
+							id="username"
+							placeholder="Enter Username"
+							onChange={handleChange}
+						/>
+						{errors.Username && (
+							<p className="error">{errors.Username}</p>
+						)}
+					</div>
+					<br />
+					<div class="form-group">
+						<label for="mobileNumber">Mobile Number</label>
+						<input
+							type="text"
+							className="form-control signup-input"
+							id="mobileNumber"
+							placeholder="Enter Mobile Number"
+							onChange={handleChange}
+						/>
+						{errors.Mobilenumber && (
+							<p className="error">{errors.Mobilenumber}</p>
+						)}
+					</div>
+					<br />
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input
+							type="password"
+							className="form-control signup-input"
+							id="password"
+							placeholder="Password"
+							onChange={handleChange}
+						/>
+					</div>
+					<br />
+					<div class="form-group">
+						<label for="password">Confirm Password</label>
+						<input
+							type="password"
+							className="form-control signup-input"
+							id="password"
+							placeholder="Password"
+							onChange={handleChange}
+						/>
+						{errors.password && (
+							<p className="error">{errors.password}</p>
+						)}
+					</div>
+					<br />
+					<center>
+						<button
+							id="submitButton"
+							type="submit"
+							class="btn btn-primary"
+							onClick={handleForm}
+						>
+							Signup
+						</button>
+					</center>
+				</form>
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Already a User?&nbsp;
+						<NavLink id="signinLink" to="/Login">
+							Login
+						</NavLink>
+					</div>
 				</div>
-				<div className="form-input">
-					<input
-						type="text"
-						name="Username"
-						id="Username"
-						value={values.Username}
-						onChange={handleChange}
-						placeholder="Enter Username"
-					/>
-					{errors.Username && (
-						<p className="error">{errors.Username}</p>
-					)}
-				</div>
-				<div className="form-input">
-					<input
-						type="text"
-						name="Mobilenumber"
-						id="Mobilenumber"
-						value={values.Mobilenumber}
-						onChange={handleChange}
-						placeholder="Enter Mobile number"
-					/>
-					{errors.Mobilenumber && (
-						<p className="error">{errors.Mobilenumber}</p>
-					)}
-				</div>
-				<div className="form-input">
-					<input
-						type="password"
-						name="password"
-						id="password"
-						value={values.password}
-						onChange={handleChange}
-						placeholder="Enter password"
-					/>
-				</div>
-				<div className="form-input">
-					<input
-						type="password"
-						name="confirmpassword"
-						id="confirmpassword"
-						value={values.word}
-						onChange={handleChange}
-						placeholder="Confirm password"
-					/>
-					{errors.password && (
-						<p className="error">{errors.password}</p>
-					)}
-				</div>
-				<p>Already a User?</p>
-				<NavLink className="Login" to="/Login">
-					Login
-				</NavLink>
-				<button className="btnsub" onSubmit={handleForm}>
-					Submit
-				</button>
-			</form>
+			</div>
 		</div>
 	);
 };

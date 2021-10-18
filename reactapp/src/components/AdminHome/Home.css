@@ -1,0 +1,19 @@
+.navbar {
+	margin: auto;
+	background-color: crimson;
+	height: 10vh;
+	padding-left: 3.5em;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	color: white;
+}
+.nav-btn {
+	font-size: large !important;
+	color: whitesmoke !important;
+	margin-right: 10px;
+}
+.table-container {
+	margin-top: 1em;
+	/* border: 2px solid black; */
+}

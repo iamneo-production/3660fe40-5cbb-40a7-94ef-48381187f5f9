@@ -1,123 +1,15 @@
-*
-{
-  margin:auto;
-  margin-top:40px;
-  border:0;
+.signup-container {
+	margin-top: 2%;
+	padding: 10px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 1px lightgray;
+	width: 45% !important;
+	background-color: lightgray;
 }
-.signUp {
-  margin-top:20px;
-  text-align: center;
-  justify-content: center;
-  box-sizing: content-box;
-  width:60%;
+.signup-heading {
+	color: blue;
 }
-div .signupheading
-{
-  background-color: crimson;
-  width:100%;
-  color: white;
-  text-align: left;
-  font-weight: 20;
-  font-size: 20px;
-  font-style:normal;
-  height:50px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin:auto;
-  display: block;
-  padding-left: 5px;
-  margin-top:40px;
-  padding-left:20px;
-  padding-top:10px;
-  
-}
-h2
-{
-  color: blue;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  font-style: normal;
-  margin-left:auto;
-  margin-right:auto;
-  margin-bottom: 20px;
-  margin-top:20px;
-}
-p
-{
-  text-align:right;
-  width:50%;
-  display: inline;
-  margin:auto;
-}
-input
-{
-  background-color: white;
-  border:1px solid black;
-  width:60%;
-  margin-top: 10px;
-  margin-bottom:20px;
-  text-align: left;
-  display: block;
-  padding:10p 15px;
-  height:40px;
-}
-div
-{
-  width:700px;
-  margin:auto;
-  justify-content: center;
-  position: relative;
-}
-div .form-outer
-{
-  background-color: lightgray;
-  border:1px solid crimson;
-  border-width: 2px;
-  margin:auto;
-}
-/*div .form-input
-{
-  background-color: white;
-  border:1px solid black;
-  width:50%;
-  margin-top: 10px;
-  margin-bottom:20px;
-  text-align: left;
-  display: block;
-  padding:10p 15px;
-  height:40px;
-}*/
-
-button.btnsub
-{
-  color: white;
-  background-color: lightskyblue;
-  padding: 10px 50px 10px 50px;
-  margin-bottom: 60px;
-  display:block;
-  margin-top:40px;
-  margin-left:auto;
-  margin-right:auto;
-  width:25%;
-}
-
-button.btnsub:hover
-{
-  background-color:blue;
-}
-button.login
-{
-  
-  text-decoration: underline;
-  color:blue;
-  background-color: lightgray;
-  text-align: right;
-  display:inline;
-  padding:0 0 0 0;
-}
-
-.error
-{
-  color:red;
-  font-size:12px;
+.signup-input {
+	border: 0.5px solid gray !important;
 }

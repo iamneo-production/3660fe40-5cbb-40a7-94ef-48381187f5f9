@@ -120,16 +120,3 @@ const MovieInfoComponent = (props) => {
 	);
 };
 export default MovieInfoComponent;
-
-
-
-
-/*
-< Tooltip Title="Like" >
-                        <icon Type="like"
-						theme="filled"
-						/>
-
-						</Tooltip>
-
-*/ 

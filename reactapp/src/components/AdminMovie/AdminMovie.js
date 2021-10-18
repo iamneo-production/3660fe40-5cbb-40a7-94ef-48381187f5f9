@@ -1,53 +1,71 @@
-import React from 'react';
+import React from "react";
 import Card from "../Card/Card";
 import Data from "../../Data";
-import './AdminMovie.css'
-const ncards = (val) =>{
-    return(
-        <Card
-            imgsrc={val.imgsrc}
-            title={val.title}
-            year={val.year}
-            hours={val.hours}
-            minutes={val.minutes}
-            genres={val.genres}
-        />
-    );
-}
+import AdminNavigation from "../NavigationBar/AdminNavigation";
+import SearchComponent from "../Utils/SearchComponent";
+import "./AdminMovie.css";
 
-const AdminMovie = () =>{
-    return(
-        <div className="">
-            <div className="adminheading">
-                Mr.Viewer
-                    <button className="btn">Home</button>
-                    <button className="btn">Movie</button>
-                    <button className="btn">Logout</button> 
-            </div>  
-            <div className="mainitem">
-                <div className="search">
-                    <input className="typing" type="text" placeholder="Type here to search"/>
-                    <button className="searchbtn">search</button>
-                </div>
-                <div className="ncards">
-                    {Data.map(ncards)}
-                </div>
-                <div class="sideform">
-                    <form><br></br>
-                        <p className="updating">Update Movie</p><br></br><br></br>
-                        <input type="text" className="forming" placeholder="Title"/>
-                        <input type="text" className="forming" placeholder="year"/>
-                        <input type="text" className="forming" placeholder="movieurl"/>
-                        <input type="text" className="forming" placeholder="imageurl"/>
-                        <input type="text" className="formingtime" placeholder="hrs"/>
-                        <input type="text" className="formingtime" placeholder="min"/>
-                        <textarea className="cast" rows="5" cols="0" placeholder="Cast"></textarea>
-                        <button className="formsubmit">Update</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    );
-}
+// const ncards = (val) => {
+// 	return (
+// 		<Card
+// 			imgsrc={val.imgsrc}
+// 			title={val.title}
+// 			year={val.year}
+// 			hours={val.hours}
+// 			minutes={val.minutes}
+// 			genres={val.genres}
+// 		/>
+// 	);
+// };
+
+const AdminMovie = () => {
+	return (
+		<div className="">
+			<AdminNavigation />
+			<SearchComponent />
+			<div className="ncards">{Data.map(Card)}</div>
+			<div className="sideform">
+				<center>
+					<h1>Add Movie</h1>
+				</center>
+				<form>
+					<input
+						type="text"
+						className="forming"
+						placeholder="Title"
+					/>
+					<input type="text" className="forming" placeholder="Year" />
+					<input
+						type="text"
+						className="forming"
+						placeholder="Movie Url"
+					/>
+					<input
+						type="text"
+						className="forming"
+						placeholder="Image Url"
+					/>
+					<input
+						type="text"
+						className="formingtime"
+						placeholder="hrs"
+					/>
+					<input
+						type="text"
+						className="formingtime"
+						placeholder="min"
+					/>
+					<textarea
+						className="cast"
+						rows="5"
+						cols="0"
+						placeholder="Cast"
+					></textarea>
+					<button className="formsubmit">Add Movie</button>
+				</form>
+			</div>
+		</div>
+	);
+};
 
 export default AdminMovie;
