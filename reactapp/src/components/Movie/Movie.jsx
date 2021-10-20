@@ -38,7 +38,7 @@ function Movie({userDetails, setUserDetails}) {
 	}, []);
 
 	// const fetchData = async (searchString) => {
-	// 	const response = await Axios.get(
+	// 	const response = await axios.get(
 	// 		`https://www.omdbapi.com/?s=${searchString.trim()}&apikey=${API_KEY}`
 	// 	);
 	// 	updateMovieList(response.data.Search);
@@ -61,7 +61,7 @@ function Movie({userDetails, setUserDetails}) {
 						type="text"
 						id="searchBox"
 						placeholder="Type here to search"
-						value={searchQuery}
+						// value={searchQuery}
 						// onChange={onTextChange}
 					/>
 					<button id="searchButton" className="searchbtn">
@@ -69,6 +69,7 @@ function Movie({userDetails, setUserDetails}) {
 					</button>
 				</div>
 				<div>
+
 					<MovieListContainer>
 						{movieList.map((movie, index) => (
 							<Link

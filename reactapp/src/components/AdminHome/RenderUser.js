@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { EditUserDetails, DeleteUserDetails } from "./UpdateUserDetails";
+
 function RenderUser({ user, index, setShallUpdate }) {
 	const [shallEdit, setShallEdit] = useState(false);
 	const [shallDelete, setShallDelete] = useState(false);
@@ -7,7 +8,7 @@ function RenderUser({ user, index, setShallUpdate }) {
 		<>
 			<tr id={`grid${index + 1}`} key={index}>
 				<td>
-					<center>{index+1}</center>
+					<center>{index + 1}</center>
 				</td>
 				<td>
 					<center>{user.username}</center>

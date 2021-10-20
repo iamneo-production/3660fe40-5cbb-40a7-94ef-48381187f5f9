@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import AdminMovie from "./components/AdminMovie/AdminMovie";
@@ -13,22 +13,40 @@ function App() {
 		<>
 			<Switch>
 				<Route exact path="/login">
-					<Login userDetail = {userDetails} setUserDetails = {setUserDetails}/>
+					<Login
+						userDetail={userDetails}
+						setUserDetails={setUserDetails}
+					/>
 				</Route>
 				<Route exact path="/signup">
-					<SignUp userDetail = {userDetails} setUserDetails = {setUserDetails}/>
+					<SignUp
+						userDetail={userDetails}
+						setUserDetails={setUserDetails}
+					/>
 				</Route>
 				<Route exact path="/movie">
-					<MovieList userDetail = {userDetails} setUserDetails = {setUserDetails}/>
+					<MovieList
+						userDetail={userDetails}
+						setUserDetails={setUserDetails}
+					/>
 				</Route>
 				<Route exact path="/admin">
-					<AdminHome userDetails = {userDetails} setUserDetails = {setUserDetails}/>
+					<AdminHome
+						userDetails={userDetails}
+						setUserDetails={setUserDetails}
+					/>
 				</Route>
 				<Route exact path="/admin/movie">
-					<AdminMovie userDetails = {userDetails} setUserDetails = {setUserDetails}/>
+					<AdminMovie
+						userDetails={userDetails}
+						setUserDetails={setUserDetails}
+					/>
 				</Route>
 				<Route exact path="/movie/:id">
-					<MovieInfoComponent userDetails = {userDetails} setUserDetails = {setUserDetails}/>
+					<MovieInfoComponent
+						userDetails={userDetails}
+						setUserDetails={setUserDetails}
+					/>
 				</Route>
 			</Switch>
 		</>

@@ -16,7 +16,7 @@ const EditMovieDetails = (props) => {
 		if (event.target.name === "movieCast") {
 			setUpdatedMovieDetails({
 				...updatedMovieDetails,
-				[event.target.name]: event.target.value.split(','),
+				[event.target.name]: event.target.value.split(","),
 			});
 		} else {
 			setUpdatedMovieDetails({
@@ -66,7 +66,7 @@ const EditMovieDetails = (props) => {
 									type="text"
 									className="form-control"
 									id="title"
-									name = "movieName"
+									name="movieName"
 									defaultValue={props.movie.movieName}
 									onChange={handleChange}
 								/>
@@ -85,7 +85,7 @@ const EditMovieDetails = (props) => {
 									type="text"
 									className="form-control"
 									id="imgsrc"
-									name = "moviePosterUrl"
+									name="moviePosterUrl"
 									defaultValue={props.movie.moviePosterUrl}
 									onChange={handleChange}
 								/>
@@ -173,7 +173,6 @@ const EditMovieDetails = (props) => {
 							<div className="col-sm-10">
 								<textarea
 									className="form-control"
-									name="cast"
 									id="cast"
 									rows="5"
 									name="movieCast"
@@ -208,7 +207,7 @@ const EditMovieDetails = (props) => {
 
 const DeleteMovie = (props) => {
 	const deleteMovie = () => {
-		console.log(props.movieId); 
+		console.log(props.movieId);
 		axios
 			.delete(
 				`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie/${props.movie.movieId}`
@@ -249,15 +248,17 @@ const Card = ({ movie, index }) => {
 	const [shallDelete, setShallDelete] = useState(false);
 	return (
 		<>
-		{console.log(movie)}
+			{console.log(movie)}
 			<div id={`grid${index + 1}`} className="card">
-				<img src={movie.moviePosterUrl} alt="mypic" className="cardimg" />
+				<img
+					src={movie.moviePosterUrl}
+					alt="mypic"
+					className="cardimg"
+				/>
 				<div className="cardinfo">
 					<h3 className="card_title">{movie.movieName}</h3>
 					<h4 className="card_year">{movie.yearOfRelease}</h4>
-					<h5 className="card_time">
-						{movie.duration} min
-					</h5>
+					<h5 className="card_time">{movie.duration} min</h5>
 					<h6 className="card_genre">{movie.movieCast}</h6>
 					<center>
 						<button

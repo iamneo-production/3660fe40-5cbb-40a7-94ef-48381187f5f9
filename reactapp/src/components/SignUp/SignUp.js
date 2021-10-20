@@ -96,7 +96,7 @@ const SignUp = ({ userDetails, setUserDetails }) => {
 			<div id="signupBox" className="container signup-container">
 				<form>
 					<div className="form-group">
-						<label for="email">Email address</label>
+						<label htmlFor="email">Email address</label>
 						<input
 							type="email"
 							name="email"
@@ -113,7 +113,7 @@ const SignUp = ({ userDetails, setUserDetails }) => {
 					<br />
 
 					<div className="form-group">
-						<label for="username">Username</label>
+						<label htmlFor="username">Username</label>
 						<input
 							type="text"
 							name="username"
@@ -128,7 +128,7 @@ const SignUp = ({ userDetails, setUserDetails }) => {
 					</div>
 					<br />
 					<div className="form-group">
-						<label for="mobileNumber">Mobile Number</label>
+						<label htmlFor="mobileNumber">Mobile Number</label>
 						<input
 							type="text"
 							name="mobileNumber"
@@ -143,7 +143,7 @@ const SignUp = ({ userDetails, setUserDetails }) => {
 					</div>
 					<br />
 					<div className="form-group">
-						<label for="password">Password</label>
+						<label htmlFor="password">Password</label>
 						<input
 							type="text"
 							name="password"
@@ -155,7 +155,7 @@ const SignUp = ({ userDetails, setUserDetails }) => {
 					</div>
 					<br />
 					<div className="form-group">
-						<label for="password">Confirm Password</label>
+						<label htmlFor="password">Confirm Password</label>
 						<input
 							type="text"
 							className="form-control signup-input"
@@ -171,7 +171,7 @@ const SignUp = ({ userDetails, setUserDetails }) => {
 						<button
 							id="submitButton"
 							type="submit"
-							class="btn btn-primary"
+							className="btn btn-primary"
 							onClick={handleForm}
 						>
 							Signup
