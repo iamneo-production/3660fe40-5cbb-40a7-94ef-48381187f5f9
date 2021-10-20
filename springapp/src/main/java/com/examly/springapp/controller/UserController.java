@@ -35,8 +35,8 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     } 
 
-    @PutMapping("/userEdit")
-    public void userEditSave(@RequestBody UserModel data){
+    @PutMapping("/userEdit/{email}")
+    public void userEditSave(@PathVariable("email") String email, @RequestBody UserModel data){
         userService.saveEditedUser(data);
     }
 

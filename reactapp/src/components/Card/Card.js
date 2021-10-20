@@ -225,7 +225,7 @@ const DeleteMovie = (props) => {
 	);
 };
 
-const Card = (movie, index) => {
+const Card = ({movie, index}) => {
 	const [shallEdit, setShallEdit] = useState(false);
 	const [shallDelete, setShallDelete] = useState(false);
 	return (

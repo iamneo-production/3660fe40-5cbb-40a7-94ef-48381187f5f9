@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import Axios from "axios";
 import { API_KEY } from "./Movie.jsx";
 import styled from "styled-components";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Tooltip } from "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const Container = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -56,16 +57,16 @@ const Close = styled.span`
 	cursor: pointer;
 	opacity: 0.8;
 `;
-const MovieInfoComponent = (props) => {
+const MovieInfoComponent = () => {
 	const [movieInfo, setMovieInfo] = useState();
-	const { selectedMovie } = props;
-	console.log(selectedMovie);
+	let { id } = useParams();
+	console.log(id);
 
 	useEffect(() => {
-		Axios.get(
-			`https://www.omdbapi.com/?i=${selectedMovie}&apikey=${API_KEY}`
-		).then((response) => setMovieInfo(response.data));
-	}, [selectedMovie]);
+		Axios.get(`https://www.omdbapi.com/?i=${id}&apikey=${API_KEY}`).then(
+			(response) => setMovieInfo(response.data)
+		);
+	}, [id]);
 	return (
 		<Container>
 			{movieInfo ? (
@@ -108,10 +109,15 @@ const MovieInfoComponent = (props) => {
 						<MovieInfo>
 							Plot: <span>{movieInfo?.Plot}</span>
 						</MovieInfo>
-						
-						
+						<span>
+							<i className="fa fa-2x fa-thumbs-up"></i>
+							&nbsp;&nbsp;
+							<i className="fa fa-2x fa-thumbs-down"></i>
+						</span>
 					</InfoColumn>
-					<Close onClick={() => props.onMovieSelect()}>X</Close>
+					<Link to="/movie">
+						<Close>X</Close>
+					</Link>
 				</>
 			) : (
 				"Loading..."

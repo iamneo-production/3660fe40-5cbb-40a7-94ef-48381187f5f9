@@ -1,49 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import AuthNavigation from "../NavigationBar/AuthNavigation";
 import "./Login.css";
 
-var signInEmail = "";
-var signInPassword = "";
-
-// const onEmailChange = (event) =>{
-//     signInEmail = event.target.value
-// }
-
-// const onPasswordChange = (event) =>{
-//     signInPassword = event.target.value;
-// }
-
-const handleLogin = (event) => {
-	event.preventDefault(); //to avoid page refresh
-	const json = JSON.stringify({
-		email: signInEmail,
-		password: signInPassword,
-	});
-	axios
-		.post(
-			"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/login",
-			json,
-			{
-				headers: {
-					"Content-Type": "application/json",
-				},
-			}
-		)
-		.then((response) => {
-			if (response.data) {
-				console.log(true);
-			} else {
-				alert("Email or password is incorrect");
-			}
-		})
-		.catch((err) => {
-			console.log("Errrror " + err);
-		});
-};
-
 const Login = () => {
+	const [loginData, setLoginData] = useState({
+		email: "",
+		password: "",
+	});
+	const handleChange = (event) =>
+		setLoginData({
+			...loginData,
+			[event.target.name]: event.target.value,
+		});
+	const handleLogin = (event) => {
+		event.preventDefault();
+		console.log(loginData);
+		axios
+			.post(
+				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/login",
+				loginData,
+				{
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			)
+			.then((response) => {
+				if (response.data) {
+					console.log(true);
+				} else {
+					alert("Email or password is incorrect");
+				}
+			})
+			.catch((err) => {
+				console.log("Errrror " + err);
+			});
+	};
 	return (
 		<>
 			<AuthNavigation />
@@ -58,8 +52,9 @@ const Login = () => {
 							type="email"
 							class="form-control login-input"
 							id="email"
-							aria-describedby="emailHelp"
+							name="email"
 							placeholder="Enter email"
+							onChange={handleChange}
 						/>
 					</div>
 					<br />
@@ -69,7 +64,9 @@ const Login = () => {
 							type="password"
 							class="form-control login-input"
 							id="password"
+							name="password"
 							placeholder="Password"
+							onChange={handleChange}
 						/>
 					</div>
 					<br />
