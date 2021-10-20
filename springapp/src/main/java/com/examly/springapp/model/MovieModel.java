@@ -33,8 +33,7 @@ public class MovieModel {
     }
 
 
-    public MovieModel(String movieId, String movieName, String movieUrl, String moviePosterUrl, String yearOfRelease, String duration,  LikeModel like, List<String> movieCast) {
-        this.movieId = movieId;
+    public MovieModel(String movieName, String movieUrl, String moviePosterUrl, String yearOfRelease, String duration,  LikeModel like, List<String> movieCast) {
         this.movieName = movieName;
         this.movieUrl = movieUrl;
         this.moviePosterUrl = moviePosterUrl;
