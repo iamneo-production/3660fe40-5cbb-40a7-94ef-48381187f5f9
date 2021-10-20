@@ -1,12 +1,18 @@
 package com.examly.springapp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Column;
+import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class UserModel{
     @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(updatable = false, nullable = false)
+    private String userId;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
@@ -14,6 +20,7 @@ public class UserModel{
     @Column(nullable = false)
     private String username;
     private String mobileNumber;
+    @Column(columnDefinition = "BOOLEAN")
     private Boolean active;
     private String role;
     
@@ -22,13 +29,22 @@ public class UserModel{
     }
 
 
-    public UserModel(String email, String password, String username, String mobileNumber, Boolean active, String role) {
+    public UserModel(String userId, String email, String password, String username, String mobileNumber, Boolean active, String role) {
+        this.userId = userId;
         this.email = email;
         this.password = password;
         this.username = username;
         this.mobileNumber = mobileNumber;
         this.active = active;
         this.role = role;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {
@@ -82,6 +98,7 @@ public class UserModel{
     @Override
     public String toString() {
         return "{" +
+            " userId='" + getUserId() + "'" +
             " email='" + getEmail() + "'" +
             ", password='" + getPassword() + "'" +
             ", username='" + getUsername() + "'" +

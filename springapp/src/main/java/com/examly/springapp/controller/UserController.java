@@ -35,9 +35,9 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     } 
 
-    @PutMapping("/userEdit")
-    public void userEditSave(@RequestBody UserModel data){
-        userService.saveEditedUser(data);
+    @PutMapping("/userEdit/{userId}")
+    public ResponseEntity<Boolean> userEditSave(@PathVariable("userId") String userId, @RequestBody UserModel data){
+        return new ResponseEntity<>(userService.saveEditedUser(data), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{email}")
