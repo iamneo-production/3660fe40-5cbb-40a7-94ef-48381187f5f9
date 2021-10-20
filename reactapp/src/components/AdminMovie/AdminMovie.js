@@ -10,7 +10,7 @@ const AdminMovie = () => {
 	useEffect(() => {
 		axios
 			.get(
-				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie"
+				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie"
 			)
 			.then((response) => {
 				setMovieData(response.data);
@@ -46,7 +46,7 @@ const AdminMovie = () => {
 		console.log(movieDetails);
 		axios
 			.post(
-				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/addMovie",
+				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/addMovie",
 				movieDetails
 			)
 			.then((res) => {

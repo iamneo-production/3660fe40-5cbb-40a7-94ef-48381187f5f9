@@ -65,7 +65,7 @@ const MovieInfoComponent = ({userDetails, setUserDetails}) => {
 		console.log(userDetails)
 		console.log(movieInfo)
 		axios.post(
-			`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/like/${movieInfo.movieId}`,
+			`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/like/${movieInfo.movieId}`,
 			userDetails
 		).then(
 			(response) => {console.log(response.data)}
@@ -79,7 +79,7 @@ const MovieInfoComponent = ({userDetails, setUserDetails}) => {
 	useEffect(() => {
 		axios
 			.get(
-				`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/movie/${id}`
+				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/movie/${id}`
 			)
 			.then((response) => setMovieInfo(response.data));
 	}, [id]);

@@ -27,7 +27,7 @@ function Movie({userDetails, setUserDetails}) {
 	useEffect(() => {
 		axios
 			.get(
-				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie"
+				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie"
 			)
 			.then((response) => {
 				updateMovieList(response.data);

@@ -20,7 +20,7 @@ const Login = ({ userDetails, setUserDetails }) => {
 		console.log(loginData);
 		axios
 			.post(
-				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/login",
+				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/login",
 				loginData,
 				{
 					headers: {
@@ -31,7 +31,7 @@ const Login = ({ userDetails, setUserDetails }) => {
 			.then((response) => {
 				axios
 					.get(
-						`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/${loginData["email"]}`
+						`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/${loginData["email"]}`
 					)
 					.then((response) => {
 						setUserDetails(response.data);

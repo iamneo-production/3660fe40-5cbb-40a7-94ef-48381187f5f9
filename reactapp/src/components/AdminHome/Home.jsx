@@ -41,7 +41,7 @@ const AdminHome = (props) => {
 	const [userList, setUserList] = useState([]);
 	useEffect(() => {
 		axios.get(
-			"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin"
+			"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin"
 		).then(
 			(response) => {
 				setUserList(response.data);

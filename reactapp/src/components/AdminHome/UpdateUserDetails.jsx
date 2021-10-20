@@ -24,7 +24,7 @@ export const EditUserDetails = (props) => {
 		console.log(updatedUserDetails);
 		axios
 			.put(
-				`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/userEdit/${props.user.userId}`,
+				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/userEdit/${props.user.userId}`,
 				updatedUserDetails
 			)
 			.then((response) => {
@@ -121,7 +121,7 @@ export const DeleteUserDetails = (props) => {
 	const deleteUser = (event) => {
 		axios
 			.delete(
-				`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/delete/${props.user.userId}`
+				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/delete/${props.user.userId}`
 			)
 			.then( () => {
 				props.setShallUpdate(true);
