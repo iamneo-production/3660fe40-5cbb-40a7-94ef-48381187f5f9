@@ -13,8 +13,8 @@ function App() {
 				<Route path="/login" component={Login} />
 				<Route path="/signup" component={SignUp} />
 				<Route path="/movie" component={MovieList} />
-				<Route path="/admin-movie" component={AdminMovie} />
-				<Route path="/admin-home" component={AdminHome} />
+				<Route exact path="/admin" component={AdminHome} />
+				<Route path="/admin/movie" component={AdminMovie} />
 			</Switch>
 		</>
 	);

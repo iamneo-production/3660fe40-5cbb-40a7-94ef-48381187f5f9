@@ -1,11 +1,15 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
 export const EditUserDetails = (props) => {
 	const [updatedUserDetails, setUpdatedUserDetails] = useState({
-		name: props.user.name,
 		email: props.user.email,
-		mobile: props.user.mobile,
+		password: props.user.password,
+		username: props.user.username,
+		mobileNumber: props.user.mobileNumber,
+		active: props.user.active,
+		role: props.user.role,
 	});
 	const handleChange = (event) => {
 		setUpdatedUserDetails({
@@ -17,7 +21,15 @@ export const EditUserDetails = (props) => {
 		event.preventDefault();
 		console.log(updatedUserDetails);
 
-		// make an api [POST] call to update the user details
+		axios
+			.put(
+				`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/userEdit/${props.user.email}`,
+				updatedUserDetails
+			)
+			.then()
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	return (
@@ -43,8 +55,8 @@ export const EditUserDetails = (props) => {
 								type="text"
 								className="form-control"
 								id="enterName"
-								name="name"
-								defaultValue={props.user.name}
+								name="username"
+								defaultValue={props.user.username}
 								onChange={handleChange}
 							/>
 						</div>
@@ -71,8 +83,8 @@ export const EditUserDetails = (props) => {
 								className="form-control"
 								id="enterMobile"
 								pattern="^(\+\d{1,3}[- ]?)?\d{10}$"
-								name="mobile"
-								defaultValue={props.user.mobile}
+								name="mobileNumber"
+								defaultValue={props.user.mobileNumber}
 								onChange={handleChange}
 							/>
 						</div>
@@ -99,9 +111,17 @@ export const EditUserDetails = (props) => {
 	);
 };
 export const DeleteUserDetails = (props) => {
-	const deleteUser = () => {
-		console.log(props.user.id); // accessing the user with user id
-		// call an api to delete a particular user
+	const deleteUser = (event) => {
+		event.preventDefault();
+
+		axios
+			.delete(
+				`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/delete/${props.user.email}`,
+			)
+			.then()
+			.catch((error) => {
+				console.log(error);
+			});
 		props.onHide();
 	};
 	return (
@@ -111,7 +131,7 @@ export const DeleteUserDetails = (props) => {
 					<Modal.Title>Delete User</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					Are you sure you want to delete <b>{props.user.name}</b>
+					Are you sure you want to delete <b>{props.user.username}</b>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="outline-danger" onClick={deleteUser}>
