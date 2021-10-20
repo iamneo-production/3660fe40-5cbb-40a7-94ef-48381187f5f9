@@ -13,58 +13,29 @@ const CoverImage = styled.img`
 	object-fit: cover;
 	height: 362px;
 `;
-const MovieName = styled.span`
-	font-size: 18px;
-	font-weight: 600;
-	color: black;
-	margin: 15px 0;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-`;
-const InfoColumn = styled.div`
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	background-color: #dc143c;
-`;
-const MovieInfo = styled.span`
-	font-size: 16px;
-	font-weight: 500;
-	color: black;
-	white-space: nowrap;
-	overflow: hidden;
-	text-transform: capitalize;
-	text-overflow: ellipsis;
-`;
-const MovieComponent = (props) => {
-	const { Title, Year, imdbID, Type, Poster } = props.movie;
 
-	const style = {
-		color: "white",
-	};
+const MovieComponent = ({ movie, index, onMovieSelect }) => {
 	return (
 		<>
-		<div id={`grid${props.index+1}`}>
-			<MovieContainer
-				onClick={() => {
-					props.onMovieSelect(imdbID);
-					window.scrollTo({ top: 0, behavior: "smooth" });
-				}}
-			>
-				<CoverImage src={Poster} alt={Title} />
+			<div id={`grid${index + 1}`}>
+				<MovieContainer
+					onClick={() => {
+						onMovieSelect(movie.movieId);
+						window.scrollTo({ top: 0, behavior: "smooth" });
+					}}
+				>
+					<CoverImage src={movie.moviePosterUrl} alt={movie.movieName} />
 
-				<div className="container">
-					<center>
-						<h3>{Title}</h3>
-						<br />
-						<h6>{Year}</h6>
-						<h6>{Type}</h6>
-					</center>
-				</div>
-			</MovieContainer>
-		</div>
-			
+					<div className="container">
+						<center>
+							<h3>{movie.movieName}</h3>
+							<br />
+							<h6>{movie.yearOfRelease}</h6>
+							<h6>{movie.movieCast}</h6>
+						</center>
+					</div>
+				</MovieContainer>
+			</div>
 		</>
 	);
 };

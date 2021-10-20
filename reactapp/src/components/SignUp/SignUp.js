@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
 import AuthNavigation from "../NavigationBar/AuthNavigation";
 import "./SignUp.css";
 
-const SignUp = () => {
+const SignUp = ({ userDetails, setUserDetails }) => {
+	const history = useHistory();
 	const [values, setValues] = useState({
 		email: "",
-		Username: "",
-		Mobilenumber: "",
+		username: "",
+		mobileNumber: "",
 		password: "",
-		confirmpassword: "",
+		role: "user",
+		active: false,
 	});
 
 	const [errors, setErrors] = useState({
@@ -25,13 +27,12 @@ const SignUp = () => {
 	};
 
 	const onSubmitRegister = (event) => {
-		event.preventDefault(); //to avoid page refresh
+		event.preventDefault();
 		console.log(values);
-		const json = JSON.stringify(values);
 		axios
 			.post(
-				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/signup",
-				json,
+				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/signup",
+				values,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -40,7 +41,22 @@ const SignUp = () => {
 			)
 			.then((response) => {
 				if (response.data) {
-					console.log(true);
+					axios
+						.get(
+							`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/${values["email"]}`
+						)
+						.then((response) => {
+							setUserDetails(response.data);
+						})
+						.catch((error) => {
+							console.log(error);
+						});
+					if (response.data) {
+						console.log(true);
+						history.push("/movie");
+					} else {
+						alert("Email or password is incorrect");
+					}
 				} else {
 					alert("Email already exists");
 				}
@@ -50,27 +66,27 @@ const SignUp = () => {
 			});
 	};
 
-	const validation = (values) => {
-		const regex = "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$";
-		if (!values.email || !regex.test(values.email)) {
-			errors.email = "re-check email";
-		}
-		if (!values.Username) {
-			errors.Username = "re-check Username";
-		}
-		if (values.password !== values.confirmpassword) {
-			errors.password = "values are not same.re-enter password";
-			errors.confirmpassword = "re-enter password";
-		}
-		var pattern = new RegExp(/^[0-9\b]+$/);
-		if (!pattern.test(values.Mobilenumber)) {
-			errors.Mobilenumber = "re-check mobile number";
-		}
-		return errors;
-	};
+	// const validation = (values) => {
+	// 	const regex = "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$";
+	// 	if (!values.email || !regex.test(values.email)) {
+	// 		errors.email = "re-check email";
+	// 	}
+	// 	if (!values.Username) {
+	// 		errors.Username = "re-check Username";
+	// 	}
+	// 	if (values.password !== values.confirmpassword) {
+	// 		errors.password = "values are not same.re-enter password";
+	// 		errors.confirmpassword = "re-enter password";
+	// 	}
+	// 	var pattern = new RegExp(/^[0-9\b]+$/);
+	// 	if (!pattern.test(values.Mobilenumber)) {
+	// 		errors.Mobilenumber = "re-check mobile number";
+	// 	}
+	// 	return errors;
+	// };
 	const handleForm = (event) => {
 		event.preventDefault();
-		setErrors(validation(values));
+		// setErrors(validation(values));
 		onSubmitRegister(event);
 	};
 	return (
@@ -79,54 +95,58 @@ const SignUp = () => {
 
 			<div id="signupBox" className="container signup-container">
 				<form>
-					<div class="form-group">
+					<div className="form-group">
 						<label for="email">Email address</label>
 						<input
 							type="email"
+							name="email"
 							className="form-control signup-input"
 							id="email"
 							aria-describedby="emailHelp"
 							placeholder="Enter email"
 							onChange={handleChange}
 						/>
-						{errors.email && (
+						{/* {errors.email && (
 							<p className="error">{errors.email}</p>
-						)}
+						)} */}
 					</div>
 					<br />
 
-					<div class="form-group">
+					<div className="form-group">
 						<label for="username">Username</label>
 						<input
 							type="text"
+							name="username"
 							className="form-control signup-input"
 							id="username"
 							placeholder="Enter Username"
 							onChange={handleChange}
 						/>
-						{errors.Username && (
+						{/* {errors.Username && (
 							<p className="error">{errors.Username}</p>
-						)}
+						)} */}
 					</div>
 					<br />
-					<div class="form-group">
+					<div className="form-group">
 						<label for="mobileNumber">Mobile Number</label>
 						<input
 							type="text"
+							name="mobileNumber"
 							className="form-control signup-input"
 							id="mobileNumber"
 							placeholder="Enter Mobile Number"
 							onChange={handleChange}
 						/>
-						{errors.Mobilenumber && (
+						{/* {errors.Mobilenumber && (
 							<p className="error">{errors.Mobilenumber}</p>
-						)}
+						)} */}
 					</div>
 					<br />
-					<div class="form-group">
+					<div className="form-group">
 						<label for="password">Password</label>
 						<input
-							type="password"
+							type="text"
+							name="password"
 							className="form-control signup-input"
 							id="password"
 							placeholder="Password"
@@ -134,18 +154,17 @@ const SignUp = () => {
 						/>
 					</div>
 					<br />
-					<div class="form-group">
+					<div className="form-group">
 						<label for="password">Confirm Password</label>
 						<input
-							type="password"
+							type="text"
 							className="form-control signup-input"
 							id="confirmPassword"
 							placeholder="Password"
-							onChange={handleChange}
 						/>
-						{errors.password && (
+						{/* {errors.password && (
 							<p className="error">{errors.password}</p>
-						)}
+						)} */}
 					</div>
 					<br />
 					<center>
@@ -159,8 +178,8 @@ const SignUp = () => {
 						</button>
 					</center>
 				</form>
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
+				<div className="mt-4">
+					<div className="d-flex justify-content-center links">
 						Already a User?&nbsp;
 						<NavLink id="signinLink" to="/Login">
 							Login

@@ -1,100 +1,55 @@
-import { useState } from "react";
-import { EditUserDetails, DeleteUserDetails } from "./UpdateUserDetails.jsx";
+import { useState, useEffect } from "react";
 import SearchComponent from "../Utils/SearchComponent";
 import AdminNavigation from "../NavigationBar/AdminNavigation.js";
 import "./Home.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import RenderUser from "./RenderUser.js";
+import axios from "axios";
+import { Modal, Button } from "react-bootstrap";
 
-const AdminHome = () => {
-	const userList = [
-		{
-			id: 1,
-			name: "User 1",
-			email: "user1@gmail.com",
-			mobile: "0123456789",
-		},
-		{
-			id: 2,
-			name: "User 2",
-			email: "user2@gmail.com",
-			mobile: "0123456789",
-		},
-		{
-			id: 3,
-			name: "User 3",
-			email: "user3@gmail.com",
-			mobile: "0123456789",
-		},
-		{
-			id: 4,
-			name: "User 4",
-			email: "user4@gmail.com",
-			mobile: "0123456789",
-		},
-	];
-	// a useEffect and an api call inside it to get the users list
-	// const [userList, setUserList] = useState([]);
 
-	const RenderUser = (user, index) => {
-		const [shallEdit, setShallEdit] = useState(false);
-		const [shallDelete, setShallDelete] = useState(false);
-		return (
-			<>
-				<tr id = {`grid${index+1}`} key={index}>
-					<td>
-						<center>{user.id}</center>
-					</td>
-					<td>
-						<center>{user.name}</center>
-					</td>
-					<td>
-						<center>{user.email}</center>
-					</td>
-					<td>
-						<center>{user.mobile}</center>
-					</td>
-					<td>
-						<center>
-							<button
-								type="submit"
-								onClick={() => setShallEdit(true)}
-								className="btn btn-outline-secondary"
-								id="editButton"
-							>
-								<span className="fa fa-edit fa-lg"></span>
-							</button>
-							&nbsp;&nbsp;
-							<button
-								type="submit"
-								onClick={() => setShallDelete(true)}
-								className="btn btn-outline-danger"
-								id="deleteButton"
-							>
-								<span className="fa fa-trash fa-lg"></span>
-							</button>
-						</center>
-					</td>
-				</tr>
 
-				{shallEdit && (
-					<EditUserDetails
-						show={shallEdit}
-						onHide={() => setShallEdit(false)}
-						key={user.id}
-						user={user}
-					/>
-				)}
-				{shallDelete && (
-					<DeleteUserDetails
-						show={shallDelete}
-						onHide={() => setShallDelete(false)}
-						key={user.id}
-						user={user}
-					/>
-				)}
-			</>
-		);
-	};
+const AdminHome = (props) => {
+	const [shallUpdate, setShallUpdate] = useState(false);
+
+	// const userList = [
+	// 	{
+	// 		id: 1,
+	// 		name: "User 1",
+	// 		email: "user1@gmail.com",
+	// 		mobile: "0123456789",
+	// 	},
+	// 	{
+	// 		id: 2,
+	// 		name: "User 2",
+	// 		email: "user2@gmail.com",
+	// 		mobile: "0123456789",
+	// 	},
+	// 	{
+	// 		id: 3,
+	// 		name: "User 3",
+	// 		email: "user3@gmail.com",
+	// 		mobile: "0123456789",
+	// 	},
+	// 	{
+	// 		id: 4,
+	// 		name: "User 4",
+	// 		email: "user4@gmail.com",
+	// 		mobile: "0123456789",
+	// 	},
+	// ];
+	const [userList, setUserList] = useState([]);
+	useEffect(() => {
+		axios.get(
+			"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin"
+		).then(
+			(response) => {
+				setUserList(response.data);
+			}
+		).catch(
+			(error) => {console.log(error)}
+		)
+	}, [shallUpdate]);
 
 	return (
 		<>
@@ -122,7 +77,11 @@ const AdminHome = () => {
 								</th>
 							</tr>
 						</thead>
-						<tbody>{userList.map(RenderUser)}</tbody>
+						<tbody>
+							{userList.map((user, key) => (
+								<RenderUser key={key} user={user} index={key} setShallUpdate={setShallUpdate} />
+							))}
+						</tbody>
 					</table>
 				</div>
 			</div>
