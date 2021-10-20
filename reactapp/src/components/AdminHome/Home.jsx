@@ -5,8 +5,13 @@ import "./Home.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RenderUser from "./RenderUser.js";
 import axios from "axios";
+import { Modal, Button } from "react-bootstrap";
 
-const AdminHome = () => {
+
+
+const AdminHome = (props) => {
+	const [shallUpdate, setShallUpdate] = useState(false);
+
 	// const userList = [
 	// 	{
 	// 		id: 1,
@@ -34,13 +39,17 @@ const AdminHome = () => {
 	// 	},
 	// ];
 	const [userList, setUserList] = useState([]);
-	useEffect(async () => {
-		const response = await axios.get(
-			"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/"
-		);
-		setUserList(response.data);
-		console.log(userList);
-	}, []);
+	useEffect(() => {
+		axios.get(
+			"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin"
+		).then(
+			(response) => {
+				setUserList(response.data);
+			}
+		).catch(
+			(error) => {console.log(error)}
+		)
+	}, [shallUpdate]);
 
 	return (
 		<>
@@ -70,7 +79,7 @@ const AdminHome = () => {
 						</thead>
 						<tbody>
 							{userList.map((user, key) => (
-								<RenderUser key={key} user={user} index={key} />
+								<RenderUser key={key} user={user} index={key} setShallUpdate={setShallUpdate} />
 							))}
 						</tbody>
 					</table>

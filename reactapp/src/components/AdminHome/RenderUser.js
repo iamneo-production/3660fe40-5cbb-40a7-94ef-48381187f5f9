@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { EditUserDetails, DeleteUserDetails } from "./UpdateUserDetails.jsx";
-function RenderUser({ user, index }) {
+import { EditUserDetails, DeleteUserDetails } from "./UpdateUserDetails";
+function RenderUser({ user, index, setShallUpdate }) {
 	const [shallEdit, setShallEdit] = useState(false);
 	const [shallDelete, setShallDelete] = useState(false);
 	return (
@@ -47,6 +47,7 @@ function RenderUser({ user, index }) {
 					onHide={() => setShallEdit(false)}
 					key={index}
 					user={user}
+					setShallUpdate={setShallUpdate}
 				/>
 			)}
 			{shallDelete && (
@@ -55,6 +56,7 @@ function RenderUser({ user, index }) {
 					onHide={() => setShallDelete(false)}
 					key={index}
 					user={user}
+					setShallUpdate={setShallUpdate}
 				/>
 			)}
 		</>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import Axios from "axios";
-import { API_KEY } from "./Movie.jsx";
+import axios from "axios";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -57,60 +56,59 @@ const Close = styled.span`
 	cursor: pointer;
 	opacity: 0.8;
 `;
-const MovieInfoComponent = () => {
+
+const MovieInfoComponent = ({userDetails, setUserDetails}) => {
 	const [movieInfo, setMovieInfo] = useState();
 	let { id } = useParams();
-	console.log(id);
+
+	const addLike = (event) => {
+		console.log(userDetails)
+		console.log(movieInfo)
+		axios.post(
+			`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/like/${movieInfo.movieId}`,
+			userDetails
+		).then(
+			(response) => {console.log(response.data)}
+		).catch(
+			(error) => {console.log(error)}
+		)
+	}
+
+	const addDisLike = (event) => {}
 
 	useEffect(() => {
-		Axios.get(`https://www.omdbapi.com/?i=${id}&apikey=${API_KEY}`).then(
-			(response) => setMovieInfo(response.data)
-		);
+		axios
+			.get(
+				`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/movie/${id}`
+			)
+			.then((response) => setMovieInfo(response.data));
 	}, [id]);
+
+
 	return (
 		<Container>
 			{movieInfo ? (
 				<>
 					<CoverImage
-						src={movieInfo?.Poster}
-						alt={movieInfo?.Title}
+						src={movieInfo.moviePosterUrl}
+						alt={movieInfo.movieName}
 					/>
 					<InfoColumn>
 						<MovieName>
-							{movieInfo?.Type}: <span>{movieInfo?.Title}</span>
+							<h1>{movieInfo?.movieName}</h1>
 						</MovieName>
 						<MovieInfo>
-							IMDB Rating: <span>{movieInfo?.imdbRating}</span>
+							Year: <span>{movieInfo?.yearOfRelease}</span>
 						</MovieInfo>
 						<MovieInfo>
-							Year: <span>{movieInfo?.Year}</span>
+							Time: <span>{movieInfo?.duration}</span>
 						</MovieInfo>
 						<MovieInfo>
-							Language: <span>{movieInfo?.Language}</span>
+							Cast: <span>{movieInfo?.movieCast}</span>
 						</MovieInfo>
-						<MovieInfo>
-							Rated: <span>{movieInfo?.Rated}</span>
-						</MovieInfo>
-						<MovieInfo>
-							Released: <span>{movieInfo?.Released}</span>
-						</MovieInfo>
-						<MovieInfo>
-							Runtime: <span>{movieInfo?.Runtime}</span>
-						</MovieInfo>
-						<MovieInfo>
-							Genre: <span>{movieInfo?.Genre}</span>
-						</MovieInfo>
-						<MovieInfo>
-							Director: <span>{movieInfo?.Director}</span>
-						</MovieInfo>
-						<MovieInfo>
-							Actors: <span>{movieInfo?.Actors}</span>
-						</MovieInfo>
-						<MovieInfo>
-							Plot: <span>{movieInfo?.Plot}</span>
-						</MovieInfo>
+						<br/>
 						<span>
-							<i className="fa fa-2x fa-thumbs-up"></i>
+							<i onClick = {addLike} className="fa fa-2x fa-thumbs-up"></i>
 							&nbsp;&nbsp;
 							<i className="fa fa-2x fa-thumbs-down"></i>
 						</span>
