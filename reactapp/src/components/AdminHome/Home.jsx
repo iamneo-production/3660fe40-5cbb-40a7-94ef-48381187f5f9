@@ -27,8 +27,7 @@ const AdminHome = (props) => {
 
 	return (
 		<>
-			{props.userDetails["role"] === "admin" ? (
-				<>
+			<>
 					<AdminNavigation
 						userDetails={props.userDetails}
 						setUserDetails={props.setUserDetails}
@@ -70,12 +69,6 @@ const AdminHome = (props) => {
 						</div>
 					</div>
 				</>
-			) : (
-				<Login
-					userDetails={props.userDetails}
-					setUserDetails={props.setUserDetails}
-				/>
-			)}
 		</>
 	);
 };
