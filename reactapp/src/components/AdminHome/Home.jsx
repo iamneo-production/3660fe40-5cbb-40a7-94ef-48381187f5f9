@@ -6,41 +6,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import RenderUser from "./RenderUser.js";
 import axios from "axios";
 
-const AdminHome = () => {
-	// const userList = [
-	// 	{
-	// 		id: 1,
-	// 		name: "User 1",
-	// 		email: "user1@gmail.com",
-	// 		mobile: "0123456789",
-	// 	},
-	// 	{
-	// 		id: 2,
-	// 		name: "User 2",
-	// 		email: "user2@gmail.com",
-	// 		mobile: "0123456789",
-	// 	},
-	// 	{
-	// 		id: 3,
-	// 		name: "User 3",
-	// 		email: "user3@gmail.com",
-	// 		mobile: "0123456789",
-	// 	},
-	// 	{
-	// 		id: 4,
-	// 		name: "User 4",
-	// 		email: "user4@gmail.com",
-	// 		mobile: "0123456789",
-	// 	},
-	// ];
+const AdminHome = (props) => {
+	const [shallUpdate, setShallUpdate] = useState(false);
 	const [userList, setUserList] = useState([]);
-	useEffect(async () => {
-		const response = await axios.get(
-			"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/"
-		);
-		setUserList(response.data);
-		console.log(userList);
-	}, []);
+	useEffect(() => {
+		axios.get(
+			"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin"
+		).then(
+			(response) => {
+				setUserList(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, [shallUpdate]);
 
 	return (
 		<>
@@ -70,7 +49,12 @@ const AdminHome = () => {
 						</thead>
 						<tbody>
 							{userList.map((user, key) => (
-								<RenderUser key={key} user={user} index={key} />
+								<RenderUser
+									key={key}
+									user={user}
+									index={key}
+									setShallUpdate={setShallUpdate}
+								/>
 							))}
 						</tbody>
 					</table>

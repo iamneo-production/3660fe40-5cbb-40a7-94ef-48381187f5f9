@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
 import AuthNavigation from "../NavigationBar/AuthNavigation";
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ userDetails, setUserDetails }) => {
+	const history = useHistory();
 	const [loginData, setLoginData] = useState({
 		email: "",
 		password: "",
@@ -19,7 +20,7 @@ const Login = () => {
 		console.log(loginData);
 		axios
 			.post(
-				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/login",
+				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/login",
 				loginData,
 				{
 					headers: {
@@ -28,8 +29,19 @@ const Login = () => {
 				}
 			)
 			.then((response) => {
+				axios
+					.get(
+						`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/${loginData["email"]}`
+					)
+					.then((response) => {
+						setUserDetails(response.data);
+					})
+					.catch((error) => {
+						console.log(error);
+					});
 				if (response.data) {
 					console.log(true);
+					history.push("/movie");
 				} else {
 					alert("Email or password is incorrect");
 				}

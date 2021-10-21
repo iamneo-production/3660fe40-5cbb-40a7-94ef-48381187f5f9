@@ -18,7 +18,7 @@ public class LikeModel{
     @Column(updatable = false, nullable = false)
     private String id;
     private int noOfLike;
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<UserModel> likedUser = new ArrayList<>();
 
     public LikeModel() {

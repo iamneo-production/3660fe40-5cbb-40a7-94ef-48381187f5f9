@@ -10,7 +10,7 @@ const AdminMovie = () => {
 	useEffect(() => {
 		axios
 			.get(
-				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admmovie"
+				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie"
 			)
 			.then((response) => {
 				setMovieData(response.data);
@@ -23,10 +23,12 @@ const AdminMovie = () => {
 		movieName: "",
 		movieUrl: "",
 		moviePosterUrl: "",
+		yearOfRelease: "",
 		movieCast: [],
+		duration: "",
 	});
 	const handleChange = (event) => {
-		if (event.target.name === "cast") {
+		if (event.target.name === "movieCast") {
 			setMovieDetails({
 				...movieDetails,
 				[event.target.name]: event.target.value.split(","),
@@ -40,10 +42,12 @@ const AdminMovie = () => {
 	};
 	const addMovie = (event) => {
 		event.preventDefault();
+		console.log(movieDetails["cast"]);
+		console.log(movieDetails);
 		axios
 			.post(
-				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/addMovie",
-				movieData
+				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/addMovie",
+				movieDetails
 			)
 			.then((res) => {
 				console.log(true);
@@ -73,7 +77,13 @@ const AdminMovie = () => {
 						name="movieName"
 						onChange={handleChange}
 					/>
-					<input type="text" className="forming" placeholder="Year" />
+					<input
+						type="text"
+						className="forming"
+						name="yearOfRelease"
+						placeholder="Year"
+						onChange={handleChange}
+					/>
 					<input
 						type="text"
 						className="forming"
@@ -88,17 +98,19 @@ const AdminMovie = () => {
 						name="moviePosterUrl"
 						onChange={handleChange}
 					/>
-					<input
+					{/* <input
 						type="text"
 						className="formingtime"
 						placeholder="hrs"
-						// onChange={handleChange}
-					/>
+						name="duration"
+						onChange={handleChange}
+					/> */}
 					<input
 						type="text"
 						className="formingtime"
 						placeholder="min"
-						// onChange={handleChange}
+						name="duration"
+						onChange={handleChange}
 					/>
 					<textarea
 						className="cast"

@@ -20,18 +20,23 @@ const MovieComponent = ({ movie, index, onMovieSelect }) => {
 			<div id={`grid${index + 1}`}>
 				<MovieContainer
 					onClick={() => {
-						onMovieSelect(movie.id);
+						onMovieSelect(movie.movieId);
 						window.scrollTo({ top: 0, behavior: "smooth" });
 					}}
+					key= {1}
 				>
-					<CoverImage src={movie.imgsrc} alt={movie.title} />
+					<CoverImage
+						src={movie.moviePosterUrl}
+						alt={movie.movieName}
+						key={2}
+					/>
 
 					<div className="container">
 						<center>
-							<h3>{movie.title}</h3>
+							<h3>{movie.movieName}</h3>
 							<br />
-							<h6>{movie.year}</h6>
-							<h6>{movie.genres}</h6>
+							<h6>{movie.yearOfRelease}</h6>
+							<h6>{movie.movieCast}</h6>
 						</center>
 					</div>
 				</MovieContainer>

@@ -1,24 +1,45 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "./Card.css";
+import axios from "axios";
 
 const EditMovieDetails = (props) => {
 	const [updatedMovieDetails, setUpdatedMovieDetails] = useState({
-		name: props.movie.name,
-		email: props.movie.email,
-		mobile: props.movie.mobile,
+		movieName: props.movie.movieName,
+		movieUrl: props.movie.movieUrl,
+		moviePosterUrl: props.movie.moviePosterUrl,
+		yearOfRelease: props.movie.yearOfRelease,
+		movieCast: props.movie.movieCast,
+		duration: props.movie.duration,
 	});
 	const handleChange = (event) => {
-		setUpdatedMovieDetails({
-			...updatedMovieDetails,
-			[event.target.name]: event.target.value,
-		});
+		if (event.target.name === "movieCast") {
+			setUpdatedMovieDetails({
+				...updatedMovieDetails,
+				[event.target.name]: event.target.value.split(","),
+			});
+		} else {
+			setUpdatedMovieDetails({
+				...updatedMovieDetails,
+				[event.target.name]: event.target.value,
+			});
+		}
 	};
 	const updateMovieDetails = (event) => {
-		event.preventDefault();
+		// event.preventDefault();
 		console.log(updatedMovieDetails);
 
-		// make an api [POST] call to update the movie details
+		axios
+			.put(
+				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie/${props.movie.movieId}`,
+				updatedMovieDetails
+			)
+			.then(() => {
+				console.log(true);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	return (
@@ -45,7 +66,8 @@ const EditMovieDetails = (props) => {
 									type="text"
 									className="form-control"
 									id="title"
-									defaultValue={props.movie.title}
+									name="movieName"
+									defaultValue={props.movie.movieName}
 									onChange={handleChange}
 								/>
 							</div>
@@ -63,7 +85,8 @@ const EditMovieDetails = (props) => {
 									type="text"
 									className="form-control"
 									id="imgsrc"
-									defaultValue={props.movie.imgsrc}
+									name="moviePosterUrl"
+									defaultValue={props.movie.moviePosterUrl}
 									onChange={handleChange}
 								/>
 							</div>
@@ -81,7 +104,8 @@ const EditMovieDetails = (props) => {
 									type="text"
 									className="form-control"
 									id="movieurl"
-									defaultValue={props.movie.movieurl}
+									name="movieUrl"
+									defaultValue={props.movie.movieUrl}
 									onChange={handleChange}
 								/>
 							</div>
@@ -100,17 +124,18 @@ const EditMovieDetails = (props) => {
 										type="text"
 										className="form-control"
 										id="inputValue"
-										defaultValue={props.movie.year}
+										name="yearOfRelease"
+										defaultValue={props.movie.yearOfRelease}
 										onChange={handleChange}
 									/>
 								</div>
-								<label
+								{/* <label
 									htmlFor="inputKey"
 									className="col-md-1 col-form-label"
 								>
 									Hours
-								</label>
-								<div className="col-md-2">
+								</label> */}
+								{/* <div className="col-md-2">
 									<input
 										type="text"
 										className="form-control"
@@ -118,7 +143,7 @@ const EditMovieDetails = (props) => {
 										defaultValue={props.movie.hours}
 										onChange={handleChange}
 									/>
-								</div>
+								</div> */}
 								<label
 									htmlFor="inputValue"
 									className="col-md-1 col-form-label"
@@ -130,7 +155,8 @@ const EditMovieDetails = (props) => {
 										type="text"
 										className="form-control"
 										id="inputValue"
-										defaultValue={props.movie.minutes}
+										name="duration"
+										defaultValue={props.movie.duration}
 										onChange={handleChange}
 									/>
 								</div>
@@ -147,29 +173,12 @@ const EditMovieDetails = (props) => {
 							<div className="col-sm-10">
 								<textarea
 									className="form-control"
-									name="cast"
 									id="cast"
 									rows="5"
-									defaultValue={props.movie.cast}
+									name="movieCast"
+									defaultValue={props.movie.movieCast}
 									onChange={handleChange}
 								></textarea>
-							</div>
-						</div>
-						<br />
-						<div className="form-group row">
-							<label
-								htmlFor="title"
-								className="col-sm-2 col-form-label"
-							>
-								Genre
-							</label>
-							<div className="col-sm-10">
-								<input
-									type="text"
-									className="form-control"
-									id="title"
-									defaultValue={props.movie.genres}
-								/>
 							</div>
 						</div>
 						<br />
@@ -198,8 +207,17 @@ const EditMovieDetails = (props) => {
 
 const DeleteMovie = (props) => {
 	const deleteMovie = () => {
-		console.log(props.movie.id); // accessing the user with user id
-		// call an api to delete a particular user
+		console.log(props.movieId);
+		axios
+			.delete(
+				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie/${props.movie.movieId}`
+			)
+			.then(() => {
+				console.log(true);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 		props.onHide();
 	};
 	return (
@@ -225,20 +243,23 @@ const DeleteMovie = (props) => {
 	);
 };
 
-const Card = ({movie, index}) => {
+const Card = ({ movie, index }) => {
 	const [shallEdit, setShallEdit] = useState(false);
 	const [shallDelete, setShallDelete] = useState(false);
 	return (
 		<>
-			<div id={`grid${index+1}`} className="card">
-				<img src={movie.imgsrc} alt="mypic" className="cardimg" />
+			{console.log(movie)}
+			<div id={`grid${index + 1}`} className="card">
+				<img
+					src={movie.moviePosterUrl}
+					alt="mypic"
+					className="cardimg"
+				/>
 				<div className="cardinfo">
-					<h3 className="card_title">{movie.title}</h3>
-					<h4 className="card_year">{movie.year}</h4>
-					<h5 className="card_time">
-						{movie.hours}:{movie.minutes}
-					</h5>
-					<h6 className="card_genre">{movie.genres}</h6>
+					<h3 className="card_title">{movie.movieName}</h3>
+					<h4 className="card_year">{movie.yearOfRelease}</h4>
+					<h5 className="card_time">{movie.duration} min</h5>
+					<h6 className="card_genre">{movie.movieCast}</h6>
 					<center>
 						<button
 							type="submit"

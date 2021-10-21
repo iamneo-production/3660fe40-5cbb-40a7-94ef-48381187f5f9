@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { EditUserDetails, DeleteUserDetails } from "./UpdateUserDetails.jsx";
-function RenderUser({ user, index }) {
+import { EditUserDetails, DeleteUserDetails } from "./UpdateUserDetails";
+
+function RenderUser({ user, index, setShallUpdate }) {
 	const [shallEdit, setShallEdit] = useState(false);
 	const [shallDelete, setShallDelete] = useState(false);
 	return (
 		<>
 			<tr id={`grid${index + 1}`} key={index}>
 				<td>
-					<center>{index+1}</center>
+					<center>{index + 1}</center>
 				</td>
 				<td>
 					<center>{user.username}</center>
@@ -47,6 +48,7 @@ function RenderUser({ user, index }) {
 					onHide={() => setShallEdit(false)}
 					key={index}
 					user={user}
+					setShallUpdate={setShallUpdate}
 				/>
 			)}
 			{shallDelete && (
@@ -55,6 +57,7 @@ function RenderUser({ user, index }) {
 					onHide={() => setShallDelete(false)}
 					key={index}
 					user={user}
+					setShallUpdate={setShallUpdate}
 				/>
 			)}
 		</>

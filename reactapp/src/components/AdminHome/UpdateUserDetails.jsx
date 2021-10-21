@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
 export const EditUserDetails = (props) => {
+	console.log(props.user);
 	const [updatedUserDetails, setUpdatedUserDetails] = useState({
+		userId: props.user.userId,
 		email: props.user.email,
 		password: props.user.password,
 		username: props.user.username,
@@ -20,16 +22,20 @@ export const EditUserDetails = (props) => {
 	const updateUserDetails = (event) => {
 		event.preventDefault();
 		console.log(updatedUserDetails);
-
 		axios
 			.put(
-				`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/userEdit/${props.user.email}`,
+				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/userEdit/${props.user.userId}`,
 				updatedUserDetails
 			)
-			.then()
+			.then((response) => {
+				if (response.data) {
+					props.setShallUpdate(true);
+				}
+			})
 			.catch((error) => {
 				console.log(error);
 			});
+		props.onHide();
 	};
 
 	return (
@@ -111,14 +117,18 @@ export const EditUserDetails = (props) => {
 	);
 };
 export const DeleteUserDetails = (props) => {
+	console.log(props);
 	const deleteUser = (event) => {
-		event.preventDefault();
-
 		axios
 			.delete(
-				`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/delete/${props.user.email}`,
+				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/delete/${props.user.userId}`
 			)
-			.then()
+			.then((response) => {
+				console.log("nice", response.data)
+				if (response) {
+					props.setShallUpdate(true);
+				}
+			})
 			.catch((error) => {
 				console.log(error);
 			});

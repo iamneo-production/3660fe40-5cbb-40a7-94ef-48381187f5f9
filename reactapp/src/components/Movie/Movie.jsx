@@ -1,12 +1,9 @@
-import React, { useState } from "react";
-import Axios from "axios";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import MovieComponent from "./MovieComponent";
-import MovieInfoComponent from "./MovieInfoComponent";
 import UserNavigation from "../NavigationBar/UserNavigation";
-import MovieList from "../MovieList/MovieList.js";
-import Data from "../../Data.js";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export const API_KEY = "a9118a3a";
 
@@ -19,28 +16,41 @@ const MovieListContainer = styled.div`
 	justify-content: space-evenly; ;
 `;
 
-function Movie() {
+function Movie({userDetails, setUserDetails}) {
+	console.log(userDetails);
 	const [searchQuery, updateSearchQuery] = useState("");
 
 	const [movieList, updateMovieList] = useState([]);
 	const [selectedMovie, onMovieSelect] = useState();
 
 	const [timeoutId, updateTimeoutId] = useState();
+	useEffect(() => {
+		axios
+			.get(
+				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie"
+			)
+			.then((response) => {
+				updateMovieList(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, []);
 
-	const fetchData = async (searchString) => {
-		const response = await Axios.get(
-			`https://www.omdbapi.com/?s=${searchString.trim()}&apikey=${API_KEY}`
-		);
-		updateMovieList(response.data.Search);
-	};
+	// const fetchData = async (searchString) => {
+	// 	const response = await axios.get(
+	// 		`https://www.omdbapi.com/?s=${searchString.trim()}&apikey=${API_KEY}`
+	// 	);
+	// 	updateMovieList(response.data.Search);
+	// };
 
-	const onTextChange = (e) => {
-		onMovieSelect("");
-		clearTimeout(timeoutId);
-		updateSearchQuery(e.target.value);
-		const timeout = setTimeout(() => fetchData(e.target.value), 500);
-		updateTimeoutId(timeout);
-	};
+	// const onTextChange = (e) => {
+	// 	onMovieSelect("");
+	// 	clearTimeout(timeoutId);
+	// 	updateSearchQuery(e.target.value);
+	// 	const timeout = setTimeout(() => fetchData(e.target.value), 500);
+	// 	updateTimeoutId(timeout);
+	// };
 	return (
 		<>
 			<UserNavigation />
@@ -51,18 +61,19 @@ function Movie() {
 						type="text"
 						id="searchBox"
 						placeholder="Type here to search"
-						value={searchQuery}
-						onChange={onTextChange}
+						// value={searchQuery}
+						// onChange={onTextChange}
 					/>
 					<button id="searchButton" className="searchbtn">
 						search
 					</button>
 				</div>
 				<div>
+
 					<MovieListContainer>
-						{Data.map((movie, index) => (
+						{movieList.map((movie, index) => (
 							<Link
-								to={`/movie/${movie.id}`}
+								to={`/movie/${movie.movieId}`}
 								style={{
 									textDecoration: "none",
 									color: "black",

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
 import AuthNavigation from "../NavigationBar/AuthNavigation";
 import "./SignUp.css";
 
-const SignUp = () => {
+const SignUp = ({ userDetails, setUserDetails }) => {
+	const history = useHistory();
 	const [values, setValues] = useState({
 		email: "",
 		username: "",
@@ -26,11 +27,11 @@ const SignUp = () => {
 	};
 
 	const onSubmitRegister = (event) => {
-		event.preventDefault(); 
+		event.preventDefault();
 		console.log(values);
 		axios
 			.post(
-				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/signup",
+				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/signup",
 				values,
 				{
 					headers: {
@@ -40,7 +41,22 @@ const SignUp = () => {
 			)
 			.then((response) => {
 				if (response.data) {
-					console.log(true);
+					axios
+						.get(
+							`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/${values["email"]}`
+						)
+						.then((response) => {
+							setUserDetails(response.data);
+						})
+						.catch((error) => {
+							console.log(error);
+						});
+					if (response.data) {
+						console.log(true);
+						history.push("/movie");
+					} else {
+						alert("Email or password is incorrect");
+					}
 				} else {
 					alert("Email already exists");
 				}
@@ -80,10 +96,10 @@ const SignUp = () => {
 			<div id="signupBox" className="container signup-container">
 				<form>
 					<div className="form-group">
-						<label for="email">Email address</label>
+						<label htmlFor="email">Email address</label>
 						<input
 							type="email"
-							name = "email"
+							name="email"
 							className="form-control signup-input"
 							id="email"
 							aria-describedby="emailHelp"
@@ -97,10 +113,10 @@ const SignUp = () => {
 					<br />
 
 					<div className="form-group">
-						<label for="username">Username</label>
+						<label htmlFor="username">Username</label>
 						<input
 							type="text"
-							name = "username"
+							name="username"
 							className="form-control signup-input"
 							id="username"
 							placeholder="Enter Username"
@@ -112,10 +128,10 @@ const SignUp = () => {
 					</div>
 					<br />
 					<div className="form-group">
-						<label for="mobileNumber">Mobile Number</label>
+						<label htmlFor="mobileNumber">Mobile Number</label>
 						<input
 							type="text"
-							name = "mobileNumber"
+							name="mobileNumber"
 							className="form-control signup-input"
 							id="mobileNumber"
 							placeholder="Enter Mobile Number"
@@ -127,10 +143,10 @@ const SignUp = () => {
 					</div>
 					<br />
 					<div className="form-group">
-						<label for="password">Password</label>
+						<label htmlFor="password">Password</label>
 						<input
 							type="text"
-							name = "password"
+							name="password"
 							className="form-control signup-input"
 							id="password"
 							placeholder="Password"
@@ -139,7 +155,7 @@ const SignUp = () => {
 					</div>
 					<br />
 					<div className="form-group">
-						<label for="password">Confirm Password</label>
+						<label htmlFor="password">Confirm Password</label>
 						<input
 							type="text"
 							className="form-control signup-input"
@@ -155,7 +171,7 @@ const SignUp = () => {
 						<button
 							id="submitButton"
 							type="submit"
-							class="btn btn-primary"
+							className="btn btn-primary"
 							onClick={handleForm}
 						>
 							Signup

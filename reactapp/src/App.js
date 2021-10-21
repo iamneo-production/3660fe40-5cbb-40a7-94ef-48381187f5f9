@@ -1,20 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import AdminMovie from "./components/AdminMovie/AdminMovie";
 import AdminHome from "./components/AdminHome/Home.jsx";
 import MovieList from "./components/Movie/Movie";
+import MovieInfoComponent from "./components/Movie/MovieInfoComponent";
 import { Route, Switch } from "react-router-dom";
 
 function App() {
+	const [userDetails, setUserDetails] = useState();
 	return (
 		<>
 			<Switch>
-				<Route path="/login" component={Login} />
-				<Route path="/signup" component={SignUp} />
-				<Route path="/movie" component={MovieList} />
-				<Route exact path="/admin" component={AdminHome} />
-				<Route path="/admin/movie" component={AdminMovie} />
+				<Route exact path="/login">
+					<Login
+						userDetail={userDetails}
+						setUserDetails={setUserDetails}
+					/>
+				</Route>
+				<Route exact path="/signup">
+					<SignUp
+						userDetail={userDetails}
+						setUserDetails={setUserDetails}
+					/>
+				</Route>
+				<Route exact path="/movie">
+					<MovieList
+						userDetail={userDetails}
+						setUserDetails={setUserDetails}
+					/>
+				</Route>
+				<Route exact path="/admin">
+					<AdminHome
+						userDetails={userDetails}
+						setUserDetails={setUserDetails}
+					/>
+				</Route>
+				<Route exact path="/admin/movie">
+					<AdminMovie
+						userDetails={userDetails}
+						setUserDetails={setUserDetails}
+					/>
+				</Route>
+				<Route exact path="/movie/:id">
+					<MovieInfoComponent
+						userDetails={userDetails}
+						setUserDetails={setUserDetails}
+					/>
+				</Route>
 			</Switch>
 		</>
 	);
