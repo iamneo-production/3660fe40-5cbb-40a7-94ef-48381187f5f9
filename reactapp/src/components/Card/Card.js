@@ -31,7 +31,7 @@ const EditMovieDetails = (props) => {
 
 		axios
 			.put(
-				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie/${props.movie.movieId}`,
+				`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie/${props.movie.movieId}`,
 				updatedMovieDetails
 			)
 			.then(() => {
@@ -210,7 +210,7 @@ const DeleteMovie = (props) => {
 		console.log(props.movieId);
 		axios
 			.delete(
-				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie/${props.movie.movieId}`
+				`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie/${props.movie.movieId}`
 			)
 			.then(() => {
 				console.log(true);

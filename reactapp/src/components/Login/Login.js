@@ -5,7 +5,9 @@ import AuthNavigation from "../NavigationBar/AuthNavigation";
 import "./Login.css";
 
 const Login = ({ userDetails, setUserDetails }) => {
+	console.log(userDetails)
 	const history = useHistory();
+	history.push("/login");
 	const [loginData, setLoginData] = useState({
 		email: "",
 		password: "",
@@ -20,7 +22,7 @@ const Login = ({ userDetails, setUserDetails }) => {
 		console.log(loginData);
 		axios
 			.post(
-				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/login",
+				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/login",
 				loginData,
 				{
 					headers: {
@@ -31,17 +33,23 @@ const Login = ({ userDetails, setUserDetails }) => {
 			.then((response) => {
 				axios
 					.get(
-						`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/${loginData["email"]}`
+						`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/${loginData["email"]}`
 					)
 					.then((response) => {
 						setUserDetails(response.data);
+						if (userDetails["role"] === "user"){
+							history.push("/movie");
+						}
+						else if (userDetails["role"] === "admin"){
+							console.log("nice");
+							history.push("/admin")
+						}
 					})
 					.catch((error) => {
 						console.log(error);
 					});
 				if (response.data) {
 					console.log(true);
-					history.push("/movie");
 				} else {
 					alert("Email or password is incorrect");
 				}
@@ -58,11 +66,11 @@ const Login = ({ userDetails, setUserDetails }) => {
 					<h1 className="login-heading">Login</h1>
 				</center>
 				<form>
-					<div class="form-group">
-						<label for="email">Email address</label>
+					<div className="form-group">
+						<label htmlFor="email">Email address</label>
 						<input
 							type="email"
-							class="form-control login-input"
+							className="form-control login-input"
 							id="email"
 							name="email"
 							placeholder="Enter email"
@@ -70,11 +78,11 @@ const Login = ({ userDetails, setUserDetails }) => {
 						/>
 					</div>
 					<br />
-					<div class="form-group">
-						<label for="password">Password</label>
+					<div className="form-group">
+						<label htmlFor="password">Password</label>
 						<input
 							type="password"
-							class="form-control login-input"
+							className="form-control login-input"
 							id="password"
 							name="password"
 							placeholder="Password"
@@ -86,15 +94,15 @@ const Login = ({ userDetails, setUserDetails }) => {
 						<button
 							id="loginButton"
 							type="submit"
-							class="btn btn-primary"
+							className="btn btn-primary"
 							onClick={handleLogin}
 						>
 							Login
 						</button>
 					</center>
 				</form>
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
+				<div className="mt-4">
+					<div className="d-flex justify-content-center links">
 						New User?&nbsp;
 						<NavLink id="signupLink" to="/SignUp">
 							Sign Up

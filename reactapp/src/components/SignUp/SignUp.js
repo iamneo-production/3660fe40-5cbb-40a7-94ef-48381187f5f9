@@ -31,7 +31,7 @@ const SignUp = ({ userDetails, setUserDetails }) => {
 		console.log(values);
 		axios
 			.post(
-				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/signup",
+				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/signup",
 				values,
 				{
 					headers: {
@@ -43,7 +43,7 @@ const SignUp = ({ userDetails, setUserDetails }) => {
 				if (response.data) {
 					axios
 						.get(
-							`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/${values["email"]}`
+							`https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/${values["email"]}`
 						)
 						.then((response) => {
 							setUserDetails(response.data);

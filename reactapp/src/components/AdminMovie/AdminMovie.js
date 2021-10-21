@@ -5,12 +5,12 @@ import SearchComponent from "../Utils/SearchComponent";
 import "./AdminMovie.css";
 import axios from "axios";
 
-const AdminMovie = () => {
+const AdminMovie = ({ userDetails, setUserDetails }) => {
 	const [movieData, setMovieData] = useState([]);
 	useEffect(() => {
 		axios
 			.get(
-				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie"
+				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie"
 			)
 			.then((response) => {
 				setMovieData(response.data);
@@ -46,7 +46,7 @@ const AdminMovie = () => {
 		console.log(movieDetails);
 		axios
 			.post(
-				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/addMovie",
+				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/addMovie",
 				movieDetails
 			)
 			.then((res) => {
@@ -58,7 +58,10 @@ const AdminMovie = () => {
 	};
 	return (
 		<div>
-			<AdminNavigation />
+			<AdminNavigation
+				userDetails={userDetails}
+				setUserDetails={setUserDetails}
+			/>
 			<SearchComponent />
 			<div className="ncards">
 				{movieData.map((movie, key) => (

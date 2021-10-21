@@ -16,7 +16,7 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
-                        .allowedOrigins("https://8081-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io");
+                        .allowedOrigins("https://8081-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io");
             }
         };
     }

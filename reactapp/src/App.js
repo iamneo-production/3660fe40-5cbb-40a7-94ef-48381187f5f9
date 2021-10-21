@@ -7,26 +7,25 @@ import MovieList from "./components/Movie/Movie";
 import MovieInfoComponent from "./components/Movie/MovieInfoComponent";
 import { Route, Switch } from "react-router-dom";
 
-function App() {
-	const [userDetails, setUserDetails] = useState();
+function App({ userDetails, setUserDetails }) {
 	return (
 		<>
 			<Switch>
 				<Route exact path="/login">
 					<Login
-						userDetail={userDetails}
+						userDetails={userDetails}
 						setUserDetails={setUserDetails}
 					/>
 				</Route>
 				<Route exact path="/signup">
 					<SignUp
-						userDetail={userDetails}
+						userDetails={userDetails}
 						setUserDetails={setUserDetails}
 					/>
 				</Route>
 				<Route exact path="/movie">
 					<MovieList
-						userDetail={userDetails}
+						userDetails={userDetails}
 						setUserDetails={setUserDetails}
 					/>
 				</Route>

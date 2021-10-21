@@ -4,6 +4,7 @@ import MovieComponent from "./MovieComponent";
 import UserNavigation from "../NavigationBar/UserNavigation";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Login from "../Login/Login";
 
 export const API_KEY = "a9118a3a";
 
@@ -16,7 +17,7 @@ const MovieListContainer = styled.div`
 	justify-content: space-evenly; ;
 `;
 
-function Movie({userDetails, setUserDetails}) {
+function Movie({ userDetails, setUserDetails }) {
 	console.log(userDetails);
 	const [searchQuery, updateSearchQuery] = useState("");
 
@@ -27,7 +28,7 @@ function Movie({userDetails, setUserDetails}) {
 	useEffect(() => {
 		axios
 			.get(
-				"https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie"
+				"https://8080-dfebdafacfadcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/movie"
 			)
 			.then((response) => {
 				updateMovieList(response.data);
@@ -38,7 +39,7 @@ function Movie({userDetails, setUserDetails}) {
 	}, []);
 
 	// const fetchData = async (searchString) => {
-	// 	const response = await axios.get(
+	// 	const response = await Axios.get(
 	// 		`https://www.omdbapi.com/?s=${searchString.trim()}&apikey=${API_KEY}`
 	// 	);
 	// 	updateMovieList(response.data.Search);
@@ -53,43 +54,51 @@ function Movie({userDetails, setUserDetails}) {
 	// };
 	return (
 		<>
-			<UserNavigation />
-			<div id="userHomePage">
-				<div className="search">
-					<input
-						className="typing"
-						type="text"
-						id="searchBox"
-						placeholder="Type here to search"
-						// value={searchQuery}
-						// onChange={onTextChange}
+			{userDetails["role"] === "user"? (
+				<>
+					<UserNavigation
+						userDetails={userDetails}
+						setUserDetails={setUserDetails}
 					/>
-					<button id="searchButton" className="searchbtn">
-						search
-					</button>
-				</div>
-				<div>
-
-					<MovieListContainer>
-						{movieList.map((movie, index) => (
-							<Link
-								to={`/movie/${movie.movieId}`}
-								style={{
-									textDecoration: "none",
-									color: "black",
-								}}
-							>
-								<MovieComponent
-									key={index}
-									movie={movie}
-									index={index}
-									onMovieSelect={onMovieSelect}
-								/>
-							</Link>
-						))}
-					</MovieListContainer>
-				</div>
-			</div>
+					<div id="userHomePage">
+						<div className="search">
+							<input
+								className="typing"
+								type="text"
+								id="searchBox"
+								placeholder="Type here to search"
+								value={searchQuery}
+								// onChange={onTextChange}
+							/>
+							<button id="searchButton" className="searchbtn">
+								search
+							</button>
+						</div>
+						<div>
+							<MovieListContainer>
+								{movieList.map((movie, index) => (
+									<Link
+										to={`/movie/${movie.movieId}`}
+										style={{
+											textDecoration: "none",
+											color: "black",
+										}}
+									>
+										<MovieComponent
+											key={index}
+											movie={movie}
+											index={index}
+											onMovieSelect={onMovieSelect}
+										/>
+									</Link>
+								))}
+							</MovieListContainer>
+						</div>
+					</div>
+				</>
+			) : (
+				<Login />
+			)}
 		</>
 	);
 }
