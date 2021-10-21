@@ -28,6 +28,12 @@ public class CommentService {
     public String addLike(String id, UserModel userModel){
         MovieModel movieModel = movieRepo.findMovieModelByMovieId(id);
         LikeModel likeModel = likeRepo.findLikeModelById(movieModel.getLike().getId());
+        for(int i = 0; i < likeModel.getLikedUser().size(); i++){
+            UserModel user = likeModel.getLikedUser().get(i);
+            if(user.getEmail().equals(userModel.getEmail())){
+                return "Already liked";
+            }
+        }
         likeModel.setNoOfLike(likeModel.getNoOfLike() + 1);
         likeModel.getLikedUser().add(userModel);
         likeRepo.save(likeModel);
@@ -38,13 +44,14 @@ public class CommentService {
     public String removeLike(String id, UserModel userModel){
         MovieModel movieModel = movieRepo.findMovieModelByMovieId(id);
         LikeModel likeModel = likeRepo.findLikeModelById(movieModel.getLike().getId());
-        if(likeModel.getNoOfLike() > 0){
-            likeModel.setNoOfLike(likeModel.getNoOfLike() - 1);
-        }
+
+            
         for(int i = 0; i < likeModel.getLikedUser().size(); i++){
             UserModel user = likeModel.getLikedUser().get(i);
             if(user.getEmail().equals(userModel.getEmail())){
                 likeModel.getLikedUser().remove(i);
+                likeModel.setNoOfLike(likeModel.getNoOfLike() - 1);
+                break;
             }
         }
         likeRepo.deleteLikeModelById(likeModel.getId());

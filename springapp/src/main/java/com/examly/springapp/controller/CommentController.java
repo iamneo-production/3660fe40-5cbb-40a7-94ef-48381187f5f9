@@ -21,8 +21,9 @@ public class CommentController {
         return new ResponseEntity<>(status, HttpStatus.OK); 
     }
 
-    @DeleteMapping("/like/{id}")
+    @DeleteMapping("/dislike/{id}")
     public ResponseEntity<String> removeLike(@PathVariable("id") String id, @RequestBody UserModel userModel){
+        System.out.println(id+" "+userModel.getUserId());
         String status = commentService.removeLike(id, userModel);
         return new ResponseEntity<>(status, HttpStatus.OK); 
     }

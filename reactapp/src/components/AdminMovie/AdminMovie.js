@@ -31,7 +31,7 @@ const AdminMovie = () => {
 		if (event.target.name === "movieCast") {
 			setMovieDetails({
 				...movieDetails,
-				[event.target.name]: event.target.value.split(','),
+				[event.target.name]: event.target.value.split(","),
 			});
 		} else {
 			setMovieDetails({
@@ -42,7 +42,7 @@ const AdminMovie = () => {
 	};
 	const addMovie = (event) => {
 		event.preventDefault();
-		console.log(movieDetails["cast"])
+		console.log(movieDetails["cast"]);
 		console.log(movieDetails);
 		axios
 			.post(

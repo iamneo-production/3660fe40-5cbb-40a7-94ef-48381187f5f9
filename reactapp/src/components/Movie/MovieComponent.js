@@ -23,8 +23,13 @@ const MovieComponent = ({ movie, index, onMovieSelect }) => {
 						onMovieSelect(movie.movieId);
 						window.scrollTo({ top: 0, behavior: "smooth" });
 					}}
+					key= {1}
 				>
-					<CoverImage src={movie.moviePosterUrl} alt={movie.movieName} />
+					<CoverImage
+						src={movie.moviePosterUrl}
+						alt={movie.movieName}
+						key={2}
+					/>
 
 					<div className="container">
 						<center>

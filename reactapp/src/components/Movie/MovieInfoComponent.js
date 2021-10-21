@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+import UserNavigation from "../NavigationBar/UserNavigation";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Container = styled.div`
@@ -57,7 +58,7 @@ const Close = styled.span`
 	opacity: 0.8;
 `;
 
-const MovieInfoComponent = ({userDetails, setUserDetails}) => {
+const MovieInfoComponent = ({ userDetails, setUserDetails }) => {
 	const [movieInfo, setMovieInfo] = useState();
 	let { id } = useParams();
 
@@ -74,7 +75,26 @@ const MovieInfoComponent = ({userDetails, setUserDetails}) => {
 		)
 	}
 
-	const addDisLike = (event) => {}
+	const addDisLike = (event) => {
+		console.log(userDetails);
+		console.log(movieInfo);
+		axios
+			.delete(
+				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/dislike/${movieInfo.movieId}`,
+				{
+					headers: {
+						"Content-Type": "application/json",
+					},
+					data:  userDetails 
+				}
+			)
+			.then((response) => {
+				console.log(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
 	useEffect(() => {
 		axios
@@ -84,43 +104,51 @@ const MovieInfoComponent = ({userDetails, setUserDetails}) => {
 			.then((response) => setMovieInfo(response.data));
 	}, [id]);
 
-
 	return (
-		<Container>
-			{movieInfo ? (
-				<>
-					<CoverImage
-						src={movieInfo.moviePosterUrl}
-						alt={movieInfo.movieName}
-					/>
-					<InfoColumn>
-						<MovieName>
-							<h1>{movieInfo?.movieName}</h1>
-						</MovieName>
-						<MovieInfo>
-							Year: <span>{movieInfo?.yearOfRelease}</span>
-						</MovieInfo>
-						<MovieInfo>
-							Time: <span>{movieInfo?.duration}</span>
-						</MovieInfo>
-						<MovieInfo>
-							Cast: <span>{movieInfo?.movieCast}</span>
-						</MovieInfo>
-						<br/>
-						<span>
-							<i onClick = {addLike} className="fa fa-2x fa-thumbs-up"></i>
-							&nbsp;&nbsp;
-							<i className="fa fa-2x fa-thumbs-down"></i>
-						</span>
-					</InfoColumn>
-					<Link to="/movie">
-						<Close>X</Close>
-					</Link>
-				</>
-			) : (
-				"Loading..."
-			)}
-		</Container>
+		<>
+			<UserNavigation />
+			<Container>
+				{movieInfo ? (
+					<>
+						<CoverImage
+							src={movieInfo.moviePosterUrl}
+							alt={movieInfo.movieName}
+						/>
+						<InfoColumn>
+							<MovieName>
+								<h1>{movieInfo?.movieName}</h1>
+							</MovieName>
+							<MovieInfo>
+								Year: <span>{movieInfo?.yearOfRelease}</span>
+							</MovieInfo>
+							<MovieInfo>
+								Time: <span>{movieInfo?.duration}</span>
+							</MovieInfo>
+							<MovieInfo>
+								Cast: <span>{movieInfo?.movieCast}</span>
+							</MovieInfo>
+							<br />
+							<span>
+								<i
+									onClick={addLike}
+									className="fa fa-2x fa-thumbs-up"
+								></i>
+								&nbsp;&nbsp;
+								<i
+									onClick={addDisLike}
+									className="fa fa-2x fa-thumbs-down"
+								></i>
+							</span>
+						</InfoColumn>
+						<Link to="/movie">
+							<Close>X</Close>
+						</Link>
+					</>
+				) : (
+					"Loading..."
+				)}
+			</Container>
+		</>
 	);
 };
 export default MovieInfoComponent;

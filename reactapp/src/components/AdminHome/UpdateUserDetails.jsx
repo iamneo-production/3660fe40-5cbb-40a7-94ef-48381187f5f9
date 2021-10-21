@@ -28,7 +28,7 @@ export const EditUserDetails = (props) => {
 				updatedUserDetails
 			)
 			.then((response) => {
-				if (response.data){
+				if (response.data) {
 					props.setShallUpdate(true);
 				}
 			})
@@ -123,10 +123,12 @@ export const DeleteUserDetails = (props) => {
 			.delete(
 				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/admin/delete/${props.user.userId}`
 			)
-			.then( () => {
-				props.setShallUpdate(true);
-			}
-			)
+			.then((response) => {
+				console.log("nice", response.data)
+				if (response) {
+					props.setShallUpdate(true);
+				}
+			})
 			.catch((error) => {
 				console.log(error);
 			});
