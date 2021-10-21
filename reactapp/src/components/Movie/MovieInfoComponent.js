@@ -80,7 +80,7 @@ const MovieInfoComponent = ({ userDetails, setUserDetails }) => {
 		console.log(movieInfo);
 		axios
 			.delete(
-				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/dislike/${movieInfo.movieId}`,
+				`https://8080-bdaeafcfacbcaeaaebdcfaaecffadcafacbdabedccca.examlyiopb.examly.io/like/${movieInfo.movieId}`,
 				{
 					headers: {
 						"Content-Type": "application/json",
